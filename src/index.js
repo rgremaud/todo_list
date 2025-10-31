@@ -37,4 +37,4 @@ threeDimensionalPrint.newTodo("Print parts");
 threeDimensionalPrint.newTodo("Assemble parts");
 threeDimensionalPrint.newTodo("Test parts");
 
-threeDimensionalPrint.printTodos();
+console.log(threeDimensionalPrint);
