@@ -3,6 +3,8 @@ import "./reset.css";
 import "./styles.css";
 
 import { Project } from "./projects.js";
+import { addDialog } from "./dialog.js";
+import { add } from "date-fns";
 
 /*
 Todo list: 
@@ -31,6 +33,7 @@ date
 status - completed, active, upcoming
 
 */
+addDialog();
 
 const threeDimensionalPrint = new Project("RC Car");
 threeDimensionalPrint.newTodo("Print parts");
