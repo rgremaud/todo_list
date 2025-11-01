@@ -6,6 +6,7 @@ import { Project } from "./projects.js";
 import { addDialog } from "./dialog.js";
 import { add } from "date-fns";
 
+
 /*
 Todo list: 
 Hierarchy -
@@ -33,6 +34,7 @@ date
 status - completed, active, upcoming
 
 */
+// initialize the dialog w/class
 addDialog();
 
 const threeDimensionalPrint = new Project("RC Car");
