@@ -1,6 +1,7 @@
 export class Todo { 
     constructor(task) {
-        this.task = task
+        this.task = task;
+        this.completed = false;
     }
 
     description() {

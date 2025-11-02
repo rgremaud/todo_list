@@ -1,51 +1,44 @@
 export { addDialog };
 
+import { Project } from "./projects.js";
+
 function addDialog() { 
     const dialog = document.getElementById("projectDialog");
     const openDialog = document.getElementById("openDialog");
     const addProject = document.getElementById("addProject");
 
+    // create div for label "Project Title"
+    const label = document.createElement("label")
+    label.textContent = "Project title: "
+    // create div for input
+    const input = document.createElement("input")
+    input.id = "input";
+    // append both to dialog box
+    dialog.appendChild(label);
+    dialog.appendChild(input);
+
     openDialog.addEventListener("click", () => {
-    dialog.show();
+        dialog.show();
     });
 
     addProject.addEventListener("click", () => {
-    dialog.close();
+        dialog.close();
+        const project = new Project(document.getElementById("input").value);
+        console.log(project);
     });
 
 };
 
-// class Dialog {
-//     constructor(dialogId, openDialog, closeDialog, parentDi) {
-//         this.dialog = new Element("dialog", "projectDialog");// dialog
-//         this.openDialog = document.createElement(`${openDialog}`); // button
-//         this.closeDialog = document.createElement(`${closeDialog}`) // button
-//     }
+function addProject() {
+    // add an input slot for project title
 
-//     clickEvents() {
-//         openDialog.addEventListener("click", () => {
-//             dialog.show();
-//             });
+}
 
-//         addProject.addEventListener("click", () => {
-//             dialog.close();
-//             });
-//     }
-// }
+class Dialog {
+    constructor(id) {
+        this.dialog = document.createElement("dialog");
+        this.dialog.id = id;
+    }
 
-// class Element {
-//   constructor(tag, id, classes = [], textContent) {
-//     this.element = document.createElement(tag);
-//     if (id) {
-//       this.element.id = id;
-//     }
-//     if (classes.length > 0) {
-//       this.element.classList.add(...classes);
-//     }
-//     this.element.textContent = textContent;
-//   }
-
-//   appendTo(parentElement) {
-//     parentElement.appendChild(this.element);
-//   }
-// }
+    // add functions to add inputs / buttons to Dialog box
+}

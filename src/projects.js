@@ -8,7 +8,8 @@ export class Project {
         const displayDate = new Date(this.createdAt);
         displayDate.toString();
         */
-        this.tasks = []
+        this.tasks = [];
+        this.completed = false;
     }
 
     newTodo(todo) { 
