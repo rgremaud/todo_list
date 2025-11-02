@@ -41,10 +41,10 @@ class Dialog {
     }
 
     // add functions to add inputs / buttons to Dialog box
-    addButton(id) {
-        const button = new Button(id);
-
-        //this.dialogElement.appendChild(button);
+    addButton(id, textContent) {
+        const button = new Button(id, textContent);
+        
+        this.dialogElement.appendChild(button.buttonElement);
     }
 
     addInput() {

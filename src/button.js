@@ -1,7 +1,7 @@
 export class Button {
     constructor(id, textContent) {
-        this.dialogElement = document.createElement("dialog");
-        this.dialogElement.id = id;
-        this.dialogElement.textContent = textContent;
+        this.buttonElement = document.createElement("button");
+        this.buttonElement.id = id;
+        this.buttonElement.textContent = textContent;
     }
 }
