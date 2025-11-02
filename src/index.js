@@ -2,8 +2,7 @@
 import "./reset.css";
 import "./styles.css";
 
-// import { Project } from "./projects.js";
-import { addDialog } from "./dialog.js";
+import { Dialog } from "./dialog.js";
 import { Database } from "./database.js";
 import { add } from "date-fns";
 
@@ -19,8 +18,18 @@ Upon initialize - build a database object
 
 */
 // initialize the dialog w/class
-addDialog();
+// addDialog();
 
-const projectDatabase = new Database();
-console.log(projectDatabase);
+function initialize(content) {
+    const projectDatabase = new Database();
+    console.log(projectDatabase);
+
+    const newDialog = new Dialog("addProject");
+    newDialog.addButton("addProject", "Add Project");
+    content.appendChild(newDialog.dialogElement);
+}
+
+const content = document.getElementById("content");
+initialize(content);
+
 
