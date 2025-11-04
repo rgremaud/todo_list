@@ -1,4 +1,4 @@
-export { Dialog };
+export { Dialog, createDialog };
 
 import { Button } from "./button.js";
 
@@ -25,4 +25,18 @@ class Dialog {
         this.dialogElement.appendChild(div);
         this.dialogElement.appendChild(input);
     }
+}
+
+// Function to generate and return dialog
+function createDialog(dialogId) {
+    const newDialog = new Dialog(dialogId);
+
+    // Add dialog info
+    newDialog.addLabelAndInput("Project Title: ", "projectTitle");
+    // Add button to dialog
+    newDialog.addButton("addProjectButton", "Add Project");
+    // Append to content
+    content.appendChild(newDialog.dialogElement);
+
+    return newDialog;
 }
