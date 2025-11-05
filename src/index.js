@@ -6,6 +6,7 @@ import { createDialog } from "./dialog.js";
 import { Database } from "./database.js";
 import { Button, createProjectButton } from "./button.js"
 import { Project } from "./projects.js"
+import { printScreen } from "./display.js";
 
 /*
 Todo list:
@@ -29,7 +30,12 @@ function initialize(content) {
         newDialog.dialogElement.close();
         console.log(projectDatabase);
         document.getElementById("projectTitle").value = "";
+
+        // build screen
+        projectContent.textContent = "";
+        printScreen(projectDatabase, content);
     });
+
 }
 
 const content = document.getElementById("content");
