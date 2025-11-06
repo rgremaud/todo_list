@@ -1,11 +1,6 @@
 export { printScreen }
 
 import { createTodoDialog } from "./dialog";
-/*
-Todo - style the div so project name shows at top
-    - Show todo's below
-    - Add a button to add todos
-*/
 
 function printScreen(database, content) {
     const array = database.projectArray;
@@ -26,19 +21,26 @@ function printScreen(database, content) {
         const addTodo = document.createElement("button");
         addTodo.textContent = "Add todo!"
 
-        // 4 - create todos dialog 
+        // 4 - create todos dialog and append
         const todoDialog = createTodoDialog("todoDialog");
-        console.log(todoDialog);
         projectDiv.appendChild(todoDialog.dialogElement);
 
-        // Add click events to todo button to create a new todo and refresh the specific project
+        projectDiv.appendChild(projName);
+        projectDiv.appendChild(addTodo);
+        projectContent.appendChild(projectDiv);
+
+        // 5 - Add click events to todo button to create a new todo and refresh the specific project
         addTodo.addEventListener("click", () => {
             console.log("test");
             todoDialog.dialogElement.show();
         })
 
-        projectDiv.appendChild(projName);
-        projectDiv.appendChild(addTodo);
-        projectContent.appendChild(projectDiv);
+        const submitTodo = document.getElementById("addTodoButton");
+
+        submitTodo.addEventListener("click", () => {
+            project.newTodo(document.getElementById("todoName").value)
+            project.printTodos();
+        });
+
     })
 }

@@ -10,19 +10,20 @@ import { printScreen } from "./display.js";
 
 /*
 Todo list:
-- Make the todo list dialog box work correctly
+- Print todos to screen when added
+- Rework the id and class names for all buttons - each Todo should have a button w/a class name that submits to that specific project
 */
 // initialize the site
 function initialize(content) {
     // Create project database to store all items
     const projectDatabase = new Database();
-    
-   // Create dialog to add projects
+
+    // Create dialog to add projects
     const newDialog = createProjectDialog("addProject");
 
     // Create project buttons
     const createProject = createProjectButton("createProject", "Create Project", newDialog.dialogElement);
-    
+
     // Look to move this
     addProjectButton.addEventListener("click", () => {
         const project = new Project(document.getElementById("projectTitle").value);
