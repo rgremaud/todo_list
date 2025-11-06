@@ -7,7 +7,7 @@ Todo - style the div so project name shows at top
     - Add a button to add todos
 */
 
-function printScreen(database, content) { 
+function printScreen(database, content) {
     const array = database.projectArray;
     const projectContent = document.getElementById("projectContent");
     content.appendChild(projectContent);
@@ -28,6 +28,8 @@ function printScreen(database, content) {
 
         // 4 - create todos dialog 
         const todoDialog = createTodoDialog("todoDialog");
+        console.log(todoDialog);
+        projectDiv.appendChild(todoDialog.dialogElement);
 
         // Add click events to todo button to create a new todo and refresh the specific project
         addTodo.addEventListener("click", () => {

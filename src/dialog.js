@@ -10,7 +10,7 @@ class Dialog {
 
     addButton(id, textContent) {
         const button = new Button(id, textContent);
-        
+
         this.dialogElement.appendChild(button.buttonElement);
     }
 
@@ -46,4 +46,6 @@ function createTodoDialog(dialogId) {
 
     newDialog.addLabelAndInput("New Todo: ", "todoName");
     newDialog.addButton("addTodoButton", "Add");
+
+    return newDialog;
 }
