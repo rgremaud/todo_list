@@ -2,7 +2,7 @@
 import "./reset.css";
 import "./styles.css";
 
-import { createDialog } from "./dialog.js";
+import { createProjectDialog } from "./dialog.js";
 import { Database } from "./database.js";
 import { Button, createProjectButton } from "./button.js"
 import { Project } from "./projects.js"
@@ -10,7 +10,7 @@ import { printScreen } from "./display.js";
 
 /*
 Todo list:
-- Add logic to print database items
+- Make the todo list dialog box work correctly
 */
 // initialize the site
 function initialize(content) {
@@ -18,7 +18,7 @@ function initialize(content) {
     const projectDatabase = new Database();
     
    // Create dialog to add projects
-    const newDialog = createDialog("addProject");
+    const newDialog = createProjectDialog("addProject");
 
     // Create project buttons
     const createProject = createProjectButton("createProject", "Create Project", newDialog.dialogElement);

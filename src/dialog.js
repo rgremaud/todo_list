@@ -1,4 +1,4 @@
-export { Dialog, createDialog };
+export { Dialog, createProjectDialog, createTodoDialog };
 
 import { Button } from "./button.js";
 
@@ -28,7 +28,7 @@ class Dialog {
 }
 
 // Function to generate and return dialog
-function createDialog(dialogId) {
+function createProjectDialog(dialogId) {
     const newDialog = new Dialog(dialogId);
 
     // Add dialog info
@@ -39,4 +39,11 @@ function createDialog(dialogId) {
     content.appendChild(newDialog.dialogElement);
 
     return newDialog;
+}
+
+function createTodoDialog(dialogId) {
+    const newDialog = new Dialog(dialogId);
+
+    newDialog.addLabelAndInput("New Todo: ", "todoName");
+    newDialog.addButton("addTodoButton", "Add");
 }
