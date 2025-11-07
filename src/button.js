@@ -1,4 +1,7 @@
-export { Button, createProjectButton }
+export { Button, createProjectButton, addProjectClickEvent }
+
+import { Project } from "./projects";
+import { printScreen } from "./display";
 
 class Button {
     constructor(id, textContent) {
@@ -22,29 +25,22 @@ class Button {
     }
 }
 
-function createProjectButton(buttonId, textContent, dialog) { 
+function createProjectButton(buttonId, textContent, dialog) {
     const button = new Button(buttonId, textContent);
     content.appendChild(button.buttonElement);
-    
+
     // add click events for create project and add project
     button.showDialogForm(button.buttonElement, dialog);
-    
+
     return button
 }
 
-function createAddProjectButton() { 
-    const createProject = new Button("createProject", "Create Project");
-    content.appendChild(createProject.buttonElement);
-    const addProjectButton = document.getElementById("addProjectButton");
-    
-    // add click events for create project and add project
-    createProject.showDialogForm(createProject.buttonElement, newDialog.dialogElement);
-    // addProjectButton.addProjectClick(addProjectButton, newDialog.dialogElement, projectDatabase);
+function addProjectClickEvent(buttonName = "projectTitle", database, dialog) {
+    const project = new Project(document.getElementById(buttonName).value);
+    database.addProject(project);
+    dialog.close();
+    document.getElementById(buttonName).value = ""
 
-    addProjectButton.addEventListener("click", () => {
-        const project = new Project(document.getElementById("projectTitle").value);
-        projectDatabase.addProject(project);
-        console.log(projectDatabase);
-        newDialog.dialogElement.close();
-    });
+    projectContent.textContent = "";
+    printScreen(projectDatabase, content);
 }

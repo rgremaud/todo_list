@@ -13,13 +13,12 @@ export class Project {
         this.id = crypto.randomUUID();
     }
 
-    newTodo(todo) { 
+    newTodo(todo) {
         const task = new Todo(todo);
         this.tasks.push(task);
     }
 
-    // remove print function when updating to a visual display
-    printTodos(div) { 
+    printTodos(div) {
         div.textContent = "";
         let todos = this.tasks;
 

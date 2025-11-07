@@ -8,8 +8,11 @@ function printScreen(database, content) {
     content.appendChild(projectContent);
 
     // Iterate over each project in the database arrayto build out dom elements
+    displayProjects(array);
+}
+
+function displayProjects(array) {
     array.forEach((project) => {
-        // create project divs - refactor this to a separate function
         // 1 - top line project div
         const projectDiv = document.createElement("div");
         projectDiv.className = "projects";
@@ -30,11 +33,6 @@ function printScreen(database, content) {
         projectDiv.appendChild(addTodo);
         projectContent.appendChild(projectDiv);
 
-        // 5 - create div to house the todos
-        const todoDiv = document.createElement("div");
-        todoDiv.className = "todoDiv";
-        projectDiv.appendChild(todoDiv);
-
         // 5 - Add click events to todo button to create a new todo and refresh the specific project
         addTodo.addEventListener("click", () => {
             todoDialog.dialogElement.show();
@@ -50,7 +48,5 @@ function printScreen(database, content) {
 
             todoDialog.dialogElement.close();
         });
-
-
     })
 }

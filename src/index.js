@@ -4,15 +4,15 @@ import "./styles.css";
 
 import { createProjectDialog } from "./dialog.js";
 import { Database } from "./database.js";
-import { Button, createProjectButton } from "./button.js"
+import { addProjectClickEvent, createProjectButton } from "./button.js"
 import { Project } from "./projects.js"
 import { printScreen } from "./display.js";
 
 /*
 Todo list:
-- Print todos to screen when added
-- Rework the id and class names for all buttons - each Todo should have a button w/a class name that submits to that specific project
+- Refactor all code where needed
 */
+
 // initialize the site
 function initialize(content) {
     // Create project database to store all items
@@ -26,14 +26,22 @@ function initialize(content) {
 
     // Look to move this
     addProjectButton.addEventListener("click", () => {
-        const project = new Project(document.getElementById("projectTitle").value);
+        // Create project
+        const project = projectDatabase.createProject(document.getElementById("projectTitle").value);
+        // Add project to database
         projectDatabase.addProject(project);
+        // close dialog
         newDialog.dialogElement.close();
+        // clear dialog content
         document.getElementById("projectTitle").value = "";
 
-        // build screen
+        // reset screen
         projectContent.textContent = "";
+        // build new screen
         printScreen(projectDatabase, content);
+
+        // doesnt work
+        // addProjectClickEvent("projectTitle", projectDatabase, newDialog.dialogElement);
     });
 
 }
