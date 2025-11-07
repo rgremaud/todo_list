@@ -29,7 +29,6 @@ function initialize(content) {
         const project = new Project(document.getElementById("projectTitle").value);
         projectDatabase.addProject(project);
         newDialog.dialogElement.close();
-        console.log(projectDatabase);
         document.getElementById("projectTitle").value = "";
 
         // build screen

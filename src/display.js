@@ -7,6 +7,7 @@ function printScreen(database, content) {
     const projectContent = document.getElementById("projectContent");
     content.appendChild(projectContent);
 
+    // Iterate over each project in the database arrayto build out dom elements
     array.forEach((project) => {
         // create project divs - refactor this to a separate function
         // 1 - top line project div
@@ -22,25 +23,34 @@ function printScreen(database, content) {
         addTodo.textContent = "Add todo!"
 
         // 4 - create todos dialog and append
-        const todoDialog = createTodoDialog("todoDialog");
+        const todoDialog = createTodoDialog("todoDialog", project.id);
         projectDiv.appendChild(todoDialog.dialogElement);
 
         projectDiv.appendChild(projName);
         projectDiv.appendChild(addTodo);
         projectContent.appendChild(projectDiv);
 
+        // 5 - create div to house the todos
+        const todoDiv = document.createElement("div");
+        todoDiv.className = "todoDiv";
+        projectDiv.appendChild(todoDiv);
+
         // 5 - Add click events to todo button to create a new todo and refresh the specific project
         addTodo.addEventListener("click", () => {
-            console.log("test");
             todoDialog.dialogElement.show();
         })
 
-        const submitTodo = document.getElementById("addTodoButton");
+        const submitTodo = document.getElementById(project.id);
 
         submitTodo.addEventListener("click", () => {
-            project.newTodo(document.getElementById("todoName").value)
-            project.printTodos();
+            project.newTodo(document.getElementById("todoName").value);
+            project.printTodos(todoDiv);
+
+            document.getElementById("todoName").value = "";
+
+            todoDialog.dialogElement.close();
         });
+
 
     })
 }

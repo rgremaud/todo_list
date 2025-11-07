@@ -10,6 +10,7 @@ export class Project {
         */
         this.tasks = [];
         this.completed = false;
+        this.id = crypto.randomUUID();
     }
 
     newTodo(todo) { 
@@ -18,7 +19,18 @@ export class Project {
     }
 
     // remove print function when updating to a visual display
-    printTodos() { 
-        console.log(this.tasks);
+    printTodos(div) { 
+        div.textContent = "";
+        let todos = this.tasks;
+
+        todos.forEach((todo) => {
+            // create a div for each todo
+            const taskDiv = document.createElement("div");
+            taskDiv.className = "task";
+            // assign textcontent
+            taskDiv.textContent = todo.task;
+            // append to div
+            div.appendChild(taskDiv);
+        })
     }
 }
