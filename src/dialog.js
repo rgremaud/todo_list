@@ -41,13 +41,11 @@ function createProjectDialog(dialogId) {
     return newDialog;
 }
 
-function createTodoDialog(dialogId, projectId) {
-    const newDialog = new Dialog(dialogId);
+function createTodoDialog(dialogId) {
+    const todoDialog = new Dialog(dialogId);
 
-    console.log(projectId);
+    todoDialog.addLabelAndInput("New Todo: ", "todoName");
+    todoDialog.addButton("Add");
 
-    newDialog.addLabelAndInput("New Todo: ", "todoName");
-    newDialog.addButton(projectId, "Add");
-
-    return newDialog;
+    return todoDialog;
 }

@@ -18,20 +18,8 @@ function displayProjects(array, allProjectContent) {
         displayProject(project);
         projectHeader(project);
         displayTodos(project);
-
-        // // 4 - create todos div, dialog and append - move to a separate function
-        // const allTodoDiv = document.createElement("div")
-        // allTodoDiv.className = "allTodoDiv"
-        // projectDiv.appendChild(allTodoDiv);
-
-        // const todoDialog = createTodoDialog("todoDialog", project.id);
-        // projectDiv.appendChild(todoDialog.dialogElement);
-
-
-        // projectDiv.appendChild(addTodo);
-
-
-        // // 5 - Add click events to todo button to create a new todo and refresh the specific project - move to separate function
+        
+        // // 6 - Add click events to todo button to create a new todo and refresh the specific project - move to separate function
         // addTodo.addEventListener("click", () => {
         //     todoDialog.dialogElement.show();
         // })
@@ -69,6 +57,9 @@ function projectHeader(project) {
     projName.textContent = project.name;
 
     const addTodo = todoButton();
+    todoDialog(project);
+
+    openTodo(addTodo, project);
 
     projHeader.appendChild(projName);
     projHeader.appendChild(addTodo);
@@ -79,6 +70,7 @@ function projectHeader(project) {
 function todoButton() {
     // 3 - create button for each project div to add todo - move to a separate function
     const addTodo = document.createElement("button");
+    addTodo.className = "addTodo";
     addTodo.textContent = "Add todo!"
 
     return addTodo
@@ -91,4 +83,18 @@ function displayTodos(project) {
 
     const projectDiv = document.getElementById(project.id);
     projectDiv.appendChild(allTodoDiv);
+}
+
+function todoDialog(project) { 
+    const projectDiv = document.getElementById(project.id);
+    const todoDialog = createTodoDialog(project.id + ".");
+    projectDiv.appendChild(todoDialog.dialogElement);
+}
+
+function openTodo(button, project) { 
+    const dialogId = project.id + ".";
+    const todoDialog = document.getElementById(dialogId);
+    button.addEventListener("click", () => {
+            todoDialog.show();
+    })
 }
