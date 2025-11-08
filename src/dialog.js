@@ -45,7 +45,7 @@ function createTodoDialog(dialogId) {
     const todoDialog = new Dialog(dialogId);
 
     todoDialog.addLabelAndInput("New Todo: ", "todoName");
-    todoDialog.addButton("Add");
+    todoDialog.addButton("placeholder", "Add");
 
     return todoDialog;
 }
