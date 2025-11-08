@@ -36,7 +36,7 @@ function initialize(content) {
         document.getElementById("projectTitle").value = "";
 
         // reset screen
-        projectContent.textContent = "";
+        allProjectContent.textContent = "";
         // build new screen
         printScreen(projectDatabase, content);
 
