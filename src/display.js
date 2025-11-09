@@ -3,7 +3,6 @@ export { printScreen }
 import { createTodoDialog } from "./dialog";
 
 function printScreen(database, content) {
-    // define the array and identify the parent projectContent div
     const array = database.projectArray;
     const allProjectContent = document.getElementById("allProjectContent");
     content.appendChild(allProjectContent);
@@ -13,32 +12,15 @@ function printScreen(database, content) {
     // Iterate over each project to assign all todos
 }
 
-function displayProjects(array, allProjectContent) {
+function displayProjects(array) {
     array.forEach((project) => {
-        displayProject(project);
-        projectHeader(project);
-        displayTodos(project);
-        
-        // // 6 - Add click events to todo button to create a new todo and refresh the specific project - move to separate function
-        // addTodo.addEventListener("click", () => {
-        //     todoDialog.dialogElement.show();
-        // })
-        // // Todo add button is set to project.id
-        // const submitTodo = document.getElementById(project.id);
-
-        // submitTodo.addEventListener("click", () => {
-        //     project.newTodo(document.getElementById("todoName").value);
-        //     project.printTodos(allTodoDiv);
-
-        //     document.getElementById("todoName").value = "";
-
-        //     todoDialog.dialogElement.close();
-        // });
+        displayProject(project); // creates top line project div
+        projectHeader(project); // creates header div with title + add todo button
+        displayTodos(project); // creates div for all todo's to be stored in
     })
 }
 
 function displayProject(project) {
-    // 1 - top line project div
     const projectDiv = document.createElement("div");
     projectDiv.className = "project";
     projectDiv.id = project.id;
@@ -47,7 +29,6 @@ function displayProject(project) {
 }
 
 function projectHeader(project) {
-    // 2 - project name 
     const projectDiv = document.getElementById(project.id);
 
     const projHeader = document.createElement("div");
@@ -68,18 +49,17 @@ function projectHeader(project) {
 }
 
 function todoButton() {
-    // 3 - create button for each project div to add todo - move to a separate function
-    const addTodo = document.createElement("button");
-    addTodo.className = "addTodo";
-    addTodo.textContent = "Add todo!"
+    const addTodoButton = document.createElement("button");
+    addTodoButton.className = "addTodo";
+    addTodoButton.textContent = "Add todo!"
 
-    return addTodo
+    return addTodoButton
 }
 
 function displayTodos(project) {
-    // 4 - create todos div to hold all the todos append - move to a separate function
-    const allTodoDiv = document.createElement("div")
-    allTodoDiv.className = "allTodoDiv"
+    const allTodoDiv = document.createElement("div");
+    allTodoDiv.className = "allTodoDiv";
+    allTodoDiv.id = project.id + "allTodo";
 
     const projectDiv = document.getElementById(project.id);
     projectDiv.appendChild(allTodoDiv);
@@ -87,12 +67,12 @@ function displayTodos(project) {
 
 function todoDialog(project) { 
     const projectDiv = document.getElementById(project.id);
-    const todoDialog = createTodoDialog(project.id + ".");
+    const todoDialog = createTodoDialog(project);
     projectDiv.appendChild(todoDialog.dialogElement);
 }
 
 function openTodo(button, project) { 
-    const dialogId = project.id + ".";
+    const dialogId = project.id + "todo";
     const todoDialog = document.getElementById(dialogId);
     button.addEventListener("click", () => {
             todoDialog.show();

@@ -10,7 +10,7 @@ import { printScreen } from "./display.js";
 
 /*
 Todo list:
-- Refactor all code where needed
+- Rework all code to no longer include the button / dialog classes
 */
 
 // initialize the site

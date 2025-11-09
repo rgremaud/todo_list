@@ -41,11 +41,32 @@ function createProjectDialog(dialogId) {
     return newDialog;
 }
 
-function createTodoDialog(dialogId) {
-    const todoDialog = new Dialog(dialogId);
+function createTodoDialog(project) {
+    const todoDialogId = project.id + "todo"
+
+    const todoDialog = new Dialog(todoDialogId);
 
     todoDialog.addLabelAndInput("New Todo: ", "todoName");
-    todoDialog.addButton("placeholder", "Add");
+    const todoDialogButton = document.createElement("button");
+    todoDialogButton.textContent = "Add";
+    todoDialogButton.id = project.id+"add";
+    todoDialog.dialogElement.appendChild(todoDialogButton);
+
+    const projectDiv = document.getElementById(project.id);
+    const allTodoDiv = document.getElementById(project.id + "allTodo");
+
+    submitTodoClickEvent(todoDialogButton, project, todoDialog.dialogElement, projectDiv); // placeholder fix to todoDiv
 
     return todoDialog;
+}
+
+function submitTodoClickEvent(button, project, dialog, projectDiv) {
+    button.addEventListener("click", () => {
+        project.newTodo(document.getElementById("todoName").value);
+        project.printTodos(projectDiv); // placeholder fix to todoDiv
+
+        // document.getElementById("todoName").value = "";
+
+        dialog.close();
+    });
 }
