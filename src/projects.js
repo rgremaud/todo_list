@@ -23,12 +23,9 @@ export class Project {
         let todos = this.tasks;
 
         todos.forEach((todo) => {
-            // create a div for each todo
             const taskDiv = document.createElement("div");
             taskDiv.className = "task";
-            // assign textcontent
             taskDiv.textContent = todo.task;
-            // append to div
             div.appendChild(taskDiv);
         })
     }

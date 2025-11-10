@@ -52,20 +52,19 @@ function createTodoDialog(project) {
     todoDialogButton.id = project.id+"add";
     todoDialog.dialogElement.appendChild(todoDialogButton);
 
-    const projectDiv = document.getElementById(project.id);
     const allTodoDiv = document.getElementById(project.id + "allTodo");
 
-    submitTodoClickEvent(todoDialogButton, project, todoDialog.dialogElement, projectDiv); // placeholder fix to todoDiv
+    submitTodoClickEvent(todoDialogButton, project, todoDialog.dialogElement, allTodoDiv);
 
     return todoDialog;
 }
 
-function submitTodoClickEvent(button, project, dialog, projectDiv) {
+function submitTodoClickEvent(button, project, dialog, allTodoDiv) {
     button.addEventListener("click", () => {
         project.newTodo(document.getElementById("todoName").value);
-        project.printTodos(projectDiv); // placeholder fix to todoDiv
+        project.printTodos(allTodoDiv);
 
-        // document.getElementById("todoName").value = "";
+        document.getElementById("todoName").value = "";
 
         dialog.close();
     });

@@ -6,17 +6,15 @@ function printScreen(database, content) {
     const array = database.projectArray;
     const allProjectContent = document.getElementById("allProjectContent");
     content.appendChild(allProjectContent);
-
-    // Iterate over each project in the database array to build out dom elements
     displayProjects(array, allProjectContent);
-    // Iterate over each project to assign all todos
 }
 
 function displayProjects(array) {
     array.forEach((project) => {
-        displayProject(project); // creates top line project div
-        projectHeader(project); // creates header div with title + add todo button
-        displayTodos(project); // creates div for all todo's to be stored in
+        displayProject(project); 
+        projectHeader(project); 
+        displayTodos(project);
+        todoDialog(project);
     })
 }
 
@@ -37,10 +35,7 @@ function projectHeader(project) {
     const projName = document.createElement("h3");
     projName.textContent = project.name;
 
-    const addTodo = todoButton();
-    todoDialog(project);
-
-    openTodo(addTodo, project);
+    const addTodo = todoButton(project);
 
     projHeader.appendChild(projName);
     projHeader.appendChild(addTodo);
@@ -48,8 +43,9 @@ function projectHeader(project) {
     projectDiv.appendChild(projHeader);
 }
 
-function todoButton() {
+function todoButton(project) {
     const addTodoButton = document.createElement("button");
+    addTodoButton.id = project.id + "addTodoButton";
     addTodoButton.className = "addTodo";
     addTodoButton.textContent = "Add todo!"
 
@@ -69,11 +65,14 @@ function todoDialog(project) {
     const projectDiv = document.getElementById(project.id);
     const todoDialog = createTodoDialog(project);
     projectDiv.appendChild(todoDialog.dialogElement);
+
+    openTodo(project);
 }
 
-function openTodo(button, project) { 
+function openTodo(project) { 
     const dialogId = project.id + "todo";
     const todoDialog = document.getElementById(dialogId);
+    const button = document.getElementById(project.id + "addTodoButton");
     button.addEventListener("click", () => {
             todoDialog.show();
     })

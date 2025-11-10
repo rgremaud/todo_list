@@ -40,8 +40,6 @@ function initialize(content) {
         // build new screen
         printScreen(projectDatabase, content);
 
-        // doesnt work
-        // addProjectClickEvent("projectTitle", projectDatabase, newDialog.dialogElement);
     });
 
 }
