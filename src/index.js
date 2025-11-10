@@ -21,7 +21,9 @@ function initialize(content) {
     // Create dialog to add projects
     const newDialog = createProjectDialog("addProject");
 
-    // Create project buttons
+    // Create header with createProject button
+    const header = document.createElement("header");
+    content.appendChild(header);
     const createProject = createProjectButton("createProject", "Create Project", newDialog.dialogElement);
 
     // Look to move this

@@ -61,7 +61,7 @@ function createTodoDialog(project) {
 
 function submitTodoClickEvent(button, project, dialog, allTodoDiv) {
     button.addEventListener("click", () => {
-        project.newTodo(document.getElementById("todoName").value);
+        project.newTodo(document.getElementById("todoName").value); // need to rework todoName to be unique for each project
         project.printTodos(allTodoDiv);
 
         document.getElementById("todoName").value = "";
