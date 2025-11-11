@@ -35,12 +35,15 @@ function createProjectButton(buttonId, textContent, dialog) {
     return button
 }
 
-function addProjectClickEvent(buttonName = "projectTitle", database, dialog) {
-    const project = new Project(document.getElementById(buttonName).value);
-    database.addProject(project);
-    dialog.close();
-    document.getElementById(buttonName).value = ""
+function addProjectClickEvent(buttonId, database, dialog) {
+    const button = document.getElementById(buttonId);
+    button.addEventListener("click", () => {
+        const project = new Project(document.getElementById("projectTitle").value);
+        database.addProject(project);
+        dialog.close();
+        document.getElementById("projectTitle").value = ""
 
-    projectContent.textContent = "";
-    printScreen(projectDatabase, content);
+        allProjectContent.textContent = "";
+        printScreen(database, content);
+    });
 }

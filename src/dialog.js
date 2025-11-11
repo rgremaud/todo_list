@@ -46,10 +46,10 @@ function createTodoDialog(project) {
 
     const todoDialog = new Dialog(todoDialogId);
 
-    todoDialog.addLabelAndInput("New Todo: ", "todoName");
+    todoDialog.addLabelAndInput("New Todo: ", project.id + "todoInput");
     const todoDialogButton = document.createElement("button");
     todoDialogButton.textContent = "Add";
-    todoDialogButton.id = project.id+"add";
+    todoDialogButton.id = project.id + "add";
     todoDialog.dialogElement.appendChild(todoDialogButton);
 
     const allTodoDiv = document.getElementById(project.id + "allTodo");
@@ -60,11 +60,12 @@ function createTodoDialog(project) {
 }
 
 function submitTodoClickEvent(button, project, dialog, allTodoDiv) {
+    const todoInput = project.id + "todoInput";
     button.addEventListener("click", () => {
-        project.newTodo(document.getElementById("todoName").value); // need to rework todoName to be unique for each project
+        project.newTodo(document.getElementById(todoInput).value); // need to rework todoName to be unique for each project
         project.printTodos(allTodoDiv);
 
-        document.getElementById("todoName").value = "";
+        document.getElementById(todoInput).value = "";
 
         dialog.close();
     });
