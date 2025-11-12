@@ -1,6 +1,7 @@
 export { Dialog, createProjectDialog, createTodoDialog };
 
 import { Button } from "./button.js";
+import { printTodos } from "./display.js";
 
 class Dialog {
     constructor(id) {
@@ -15,27 +16,22 @@ class Dialog {
     }
 
     addLabelAndInput(divText, inputId) {
-        // create div for label "Project Title"
         const div = document.createElement("div");
         div.textContent = divText;
-        // create div for input
+    
         const input = document.createElement("input")
         input.id = inputId;
-        // append both to dialog box
+        
         this.dialogElement.appendChild(div);
         this.dialogElement.appendChild(input);
     }
 }
 
-// Function to generate and return dialog
 function createProjectDialog(dialogId) {
     const newDialog = new Dialog(dialogId);
-
-    // Add dialog info
     newDialog.addLabelAndInput("Project Title: ", "projectTitle");
-    // Add button to dialog
     newDialog.addButton("addProjectButton", "Add Project");
-    // Append to content
+    
     content.appendChild(newDialog.dialogElement);
 
     return newDialog;
@@ -62,8 +58,8 @@ function createTodoDialog(project) {
 function submitTodoClickEvent(button, project, dialog, allTodoDiv) {
     const todoInput = project.id + "todoInput";
     button.addEventListener("click", () => {
-        project.newTodo(document.getElementById(todoInput).value); // need to rework todoName to be unique for each project
-        project.printTodos(allTodoDiv);
+        project.newTodo(document.getElementById(todoInput).value); 
+        printTodos(project);
 
         document.getElementById(todoInput).value = "";
 

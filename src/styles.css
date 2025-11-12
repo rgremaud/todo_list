@@ -49,3 +49,26 @@ dialog {
     padding-bottom: 1vh;
     border-bottom: 1px black solid;
 }
+
+.task { 
+    display: flex;
+    flex-direction: row;
+}
+
+.taskMarker { 
+    /* background-color: red; */
+    height: 2vh;
+    width: 2vh;
+    border-radius: 1vh;
+    margin: .5vh 1vw 0 0;
+}
+
+button {
+    font-weight: bold;
+
+    border: none;
+    border-radius: 10px;
+
+    padding: 1vh 3vw;
+    cursor: pointer;
+}

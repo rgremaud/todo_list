@@ -18,15 +18,4 @@ export class Project {
         this.tasks.push(task);
     }
 
-    printTodos(div) {
-        div.textContent = "";
-        let todos = this.tasks;
-
-        todos.forEach((todo) => {
-            const taskDiv = document.createElement("div");
-            taskDiv.className = "task";
-            taskDiv.textContent = todo.task;
-            div.appendChild(taskDiv);
-        })
-    }
 }

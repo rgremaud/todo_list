@@ -1,4 +1,4 @@
-export { printScreen }
+export { printScreen, printTodos }
 
 import { createTodoDialog } from "./dialog";
 
@@ -11,14 +11,14 @@ function printScreen(database, content) {
 
 function displayProjects(array) {
     array.forEach((project) => {
-        displayProject(project); 
-        projectHeader(project); 
-        displayTodos(project);
+        createDisplayProject(project); 
+        createProjectHeader(project); 
+        createAllTodoDiv(project);
         todoDialog(project);
     })
 }
 
-function displayProject(project) {
+function createDisplayProject(project) {
     const projectDiv = document.createElement("div");
     projectDiv.className = "project";
     projectDiv.id = project.id;
@@ -26,7 +26,7 @@ function displayProject(project) {
     allProjectContent.appendChild(projectDiv);
 }
 
-function projectHeader(project) {
+function createProjectHeader(project) {
     const projectDiv = document.getElementById(project.id);
 
     const projHeader = document.createElement("div");
@@ -52,7 +52,7 @@ function todoButton(project) {
     return addTodoButton
 }
 
-function displayTodos(project) {
+function createAllTodoDiv(project) {
     const allTodoDiv = document.createElement("div");
     allTodoDiv.className = "allTodoDiv";
     allTodoDiv.id = project.id + "allTodo";
@@ -75,5 +75,45 @@ function openTodo(project) {
     const button = document.getElementById(project.id + "addTodoButton");
     button.addEventListener("click", () => {
             todoDialog.show();
+    })
+}
+
+// moving this out of the project section - doesn't work.
+function printTodos(project) {
+    // Use the project div to find the all todo div
+    const allTodoDiv = document.getElementById(project.id + "allTodo")
+
+    // reset the textContent of div
+    allTodoDiv.textContent = "";
+
+    // define current todos
+    const todos = project.tasks;
+
+    // iterate over each todo
+    todos.forEach((todo) => {
+        // create taskDiv
+        const taskDiv = document.createElement("div");
+        taskDiv.className = "task";
+
+        // create marker div
+        const taskMarker = document.createElement("div");
+        taskMarker.className = "taskMarker";
+        // check the task completion status and populate color as red or green
+        if ( todo.completed === false ) {
+            taskMarker.style.backgroundColor = "red";
+        } else {
+            taskMarker.style.backgroundColor = "green";
+        }
+
+
+        // create task text div
+        const taskText = document.createElement("div");
+        taskText.className = "taskText"
+        taskText.textContent = todo.task;
+
+        taskDiv.appendChild(taskMarker);
+        taskDiv.appendChild(taskText);
+
+        allTodoDiv.appendChild(taskDiv);
     })
 }
