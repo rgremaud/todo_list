@@ -78,7 +78,7 @@ function openTodo(project) {
     })
 }
 
-// moving this out of the project section - doesn't work.
+// refactor this
 function printTodos(project) {
     // Use the project div to find the all todo div
     const allTodoDiv = document.getElementById(project.id + "allTodo")
@@ -105,6 +105,18 @@ function printTodos(project) {
             taskMarker.style.backgroundColor = "green";
         }
 
+        // add a click event to each taskDiv to toggle color between red and green
+        taskDiv.addEventListener("click", () => {
+            if ( taskMarker.style.backgroundColor === "red") {
+                taskMarker.style.backgroundColor = "green";
+                todo.completed = true;
+                console.log(todo)
+            } else { 
+                taskMarker.style.backgroundColor = "red";
+                todo.completed = false;
+                console.log(todo);
+            }
+        });
 
         // create task text div
         const taskText = document.createElement("div");

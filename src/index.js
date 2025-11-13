@@ -11,7 +11,7 @@ import { printScreen } from "./display.js";
 
 /*
 Todo list:
-- Add a circle box at the start of each todo which is red if completed, green if not completed
+- Figure out the structure for assigning due dates
 */
 
 // initialize the site
