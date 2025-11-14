@@ -6,11 +6,17 @@ build a div for each project
 make each project title a link that allows you to navigate to that projects todos/etc
 */
 
-export { createSidebar }
+export { createSidebar, populateSidebar }
 
 function createSidebar(database) {
     const sidebar = document.getElementById("sidebar");
-    sidebar.textContent = "";
+
+    const sidebarProjectList = document.createElement("div");
+    sidebarProjectList.id = "sidebarProjectList";
+    sidebar.appendChild(sidebarProjectList)
+}
+
+function populateSidebar(database) {
     const projects = database.projectArray;
 
     projects.forEach((project) => {
@@ -18,6 +24,6 @@ function createSidebar(database) {
         projectSidebar.className = "projectSidebar";
         projectSidebar.textContent = project.name;
 
-        sidebar.appendChild(projectSidebar);
+        sidebarProjectList.appendChild(projectSidebar);
     })
 }

@@ -8,7 +8,7 @@ function createProjectButton(dialog) {
     button.textContent = "Create Project"
     button.id = "createProject"
 
-    content.appendChild(button);
+    sidebar.appendChild(button);
 
     // add click events for create project and add project
     button.addEventListener("click", () => {

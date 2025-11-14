@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 
-body { 
+body {
     background-color: gray;
     font-family: "Lato", sans-serif;
     font-optical-sizing: auto;
@@ -8,23 +8,35 @@ body {
     font-style: normal;
 }
 
-#allProjectContent { 
+#allProjectContent {
     display: flex;
     flex-direction: row;
     width: 100%;
 }
 
-header { 
+header {
     margin: 1vh 1vw;
     font-size: 2rem;
     font-weight: 400;
 }
 
-#createProject { 
+#content {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: 80vh;
+}
+
+#sidebar {
+    width: 30%;
+    height: 100%
+}
+
+#createProject {
     margin: 1vh 1vw;
 }
 
-dialog { 
+dialog {
     margin: 1vh 1vw;
     border-radius: 10px;
 }
@@ -38,11 +50,11 @@ dialog {
     min-height: 50vh;
 }
 
-.allTodoDiv { 
+.allTodoDiv {
     margin: 1vh 1vw;
 }
 
-.projHeader { 
+.projHeader {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -51,13 +63,13 @@ dialog {
     border-bottom: 1px black solid;
 }
 
-.task { 
+.task {
     display: flex;
     flex-direction: row;
     cursor: pointer;
 }
 
-.taskMarker { 
+.taskMarker {
     height: 2vh;
     width: 2vh;
     border-radius: 1vh;
