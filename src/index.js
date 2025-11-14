@@ -2,7 +2,7 @@
 import "./reset.css";
 import "./styles.css";
 
-import { createProjectDialog, createProjectDialogNoClass } from "./dialog.js";
+import { createProjectDialog } from "./dialog.js";
 import { Database } from "./database.js";
 import { addProjectClickEvent, createProjectButton } from "./button.js"
 import { createHeader } from "./header.js";
@@ -11,8 +11,7 @@ import { printScreen } from "./display.js";
 
 /*
 Todo list:
-- Figure out the structure for assigning due dates
-- Rework dialog format so the inputs are on top, then buttons on the bottom
+- Rework so button class is also removed, then refactor code
 */
 
 // initialize the site
