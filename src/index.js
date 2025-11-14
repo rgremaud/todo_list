@@ -6,12 +6,11 @@ import { createProjectDialog } from "./dialog.js";
 import { Database } from "./database.js";
 import { addProjectClickEvent, createProjectButton } from "./button.js"
 import { createHeader } from "./header.js";
-import { Project } from "./projects.js"
-import { printScreen } from "./display.js";
+import { createSidebar } from "./sidebar.js";
 
 /*
 Todo list:
-- Rework so button class is also removed, then refactor code
+- Rework site layout with a header, then project nav column across left with active project details displayed center screen
 */
 
 // initialize the site

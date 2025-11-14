@@ -1,25 +1,23 @@
 export { createProjectDialog, createTodoDialog };
 
-import { Button } from "./button.js";
 import { printTodos } from "./display.js";
-
 
 
 function createProjectDialog(dialogId) {
     // create the dialog and assign ID
     const projectDialog = document.createElement("dialog");
     projectDialog.id = dialogId;
-    
+
     // assign the project title div
     const projectTitle = document.createElement("div");
     projectTitle.textContent = "Project Title";
-    
+
     const input = document.createElement("input")
     input.id = "projectTitle";
-        
+
     projectDialog.appendChild(projectTitle);
     projectDialog.appendChild(input);
-    
+
     const addProjectButton = document.createElement("button");
     addProjectButton.id = "addProjectButton";
     addProjectButton.textContent = "Add Project";
@@ -53,7 +51,7 @@ function createTodoDialog(project) {
     todoDialog.appendChild(newTodo);
     todoDialog.appendChild(input);
 
-    
+
     const todoDialogButton = document.createElement("button");
     todoDialogButton.textContent = "Add";
     todoDialogButton.id = project.id + "add";
@@ -67,7 +65,7 @@ function createTodoDialog(project) {
     cancelButton.addEventListener("click", () => {
         todoDialog.dialogElement.close();
     })
-    
+
     todoDialog.appendChild(cancelButton);
 
     submitTodoClickEvent(todoDialogButton, project, todoDialog, allTodoDiv);
@@ -78,7 +76,7 @@ function createTodoDialog(project) {
 function submitTodoClickEvent(button, project, dialog, allTodoDiv) {
     const todoInput = project.id + "todoInput";
     button.addEventListener("click", () => {
-        project.newTodo(document.getElementById(todoInput).value); 
+        project.newTodo(document.getElementById(todoInput).value);
         printTodos(project);
 
         document.getElementById(todoInput).value = "";

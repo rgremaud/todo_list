@@ -1,29 +1,7 @@
-export { Button, createProjectButton, addProjectClickEvent }
+export { createProjectButton, addProjectClickEvent }
 
 import { Project } from "./projects";
 import { printScreen } from "./display";
-
-class Button {
-    constructor(id, textContent) {
-        this.buttonElement = document.createElement("button");
-        this.buttonElement.id = id;
-        this.buttonElement.textContent = textContent;
-    }
-
-    showDialogForm(button, dialog) {
-        button.addEventListener("click", () => {
-            dialog.show();
-        });
-    }
-
-    addProjectClick(button, dialog, database) {
-        button.addEventListener("click", () => {
-            const project = new Project(document.getElementById("projectTitle").value);
-            database.addProject(project);
-            dialog.close();
-        });
-    }
-}
 
 function createProjectButton(dialog) {
     const button = document.createElement("button");
@@ -34,8 +12,8 @@ function createProjectButton(dialog) {
 
     // add click events for create project and add project
     button.addEventListener("click", () => {
-            dialog.show();
-        });
+        dialog.show();
+    });
 
     return button
 }

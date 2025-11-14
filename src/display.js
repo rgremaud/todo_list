@@ -1,18 +1,20 @@
 export { printScreen, printTodos }
 
 import { createTodoDialog } from "./dialog";
+import { createSidebar } from "./sidebar";
 
 function printScreen(database, content) {
     const array = database.projectArray;
     const allProjectContent = document.getElementById("allProjectContent");
     content.appendChild(allProjectContent);
     displayProjects(array, allProjectContent);
+    createSidebar(database);
 }
 
 function displayProjects(array) {
     array.forEach((project) => {
-        createDisplayProject(project); 
-        createProjectHeader(project); 
+        createDisplayProject(project);
+        createProjectHeader(project);
         createAllTodoDiv(project);
         todoDialog(project);
     })
@@ -61,7 +63,7 @@ function createAllTodoDiv(project) {
     projectDiv.appendChild(allTodoDiv);
 }
 
-function todoDialog(project) { 
+function todoDialog(project) {
     const projectDiv = document.getElementById(project.id);
     const todoDialog = createTodoDialog(project);
     projectDiv.appendChild(todoDialog);
@@ -69,12 +71,12 @@ function todoDialog(project) {
     openTodo(project);
 }
 
-function openTodo(project) { 
+function openTodo(project) {
     const dialogId = project.id + "todo";
     const todoDialog = document.getElementById(dialogId);
     const button = document.getElementById(project.id + "addTodoButton");
     button.addEventListener("click", () => {
-            todoDialog.show();
+        todoDialog.show();
     })
 }
 
@@ -99,7 +101,7 @@ function printTodos(project) {
         const taskMarker = document.createElement("div");
         taskMarker.className = "taskMarker";
         // check the task completion status and populate color as red or green
-        if ( todo.completed === false ) {
+        if (todo.completed === false) {
             taskMarker.style.backgroundColor = "red";
         } else {
             taskMarker.style.backgroundColor = "green";
@@ -107,11 +109,11 @@ function printTodos(project) {
 
         // add a click event to each taskDiv to toggle color between red and green
         taskDiv.addEventListener("click", () => {
-            if ( taskMarker.style.backgroundColor === "red") {
+            if (taskMarker.style.backgroundColor === "red") {
                 taskMarker.style.backgroundColor = "green";
                 todo.completed = true;
                 console.log(todo)
-            } else { 
+            } else {
                 taskMarker.style.backgroundColor = "red";
                 todo.completed = false;
                 console.log(todo);
