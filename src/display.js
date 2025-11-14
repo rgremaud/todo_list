@@ -64,7 +64,7 @@ function createAllTodoDiv(project) {
 function todoDialog(project) { 
     const projectDiv = document.getElementById(project.id);
     const todoDialog = createTodoDialog(project);
-    projectDiv.appendChild(todoDialog.dialogElement);
+    projectDiv.appendChild(todoDialog);
 
     openTodo(project);
 }

@@ -1,61 +1,63 @@
-export { Dialog, createProjectDialog, createTodoDialog };
+export { createProjectDialog, createTodoDialog };
 
 import { Button } from "./button.js";
 import { printTodos } from "./display.js";
 
-class Dialog {
-    constructor(id) {
-        this.dialogElement = document.createElement("dialog");
-        this.dialogElement.id = id;
-    }
 
-    addButton(id, textContent) {
-        const button = new Button(id, textContent);
-
-        this.dialogElement.appendChild(button.buttonElement);
-    }
-
-    addLabelAndInput(divText, inputId) {
-        const div = document.createElement("div");
-        div.textContent = divText;
-    
-        const input = document.createElement("input")
-        input.id = inputId;
-        
-        this.dialogElement.appendChild(div);
-        this.dialogElement.appendChild(input);
-    }
-}
 
 function createProjectDialog(dialogId) {
-    const newDialog = new Dialog(dialogId);
-    newDialog.addLabelAndInput("Project Title: ", "projectTitle");
-    newDialog.addButton("addProjectButton", "Add Project");
+    // create the dialog and assign ID
+    const projectDialog = document.createElement("dialog");
+    projectDialog.id = dialogId;
+    
+    // assign the project title div
+    const projectTitle = document.createElement("div");
+    projectTitle.textContent = "Project Title";
+    
+    const input = document.createElement("input")
+    input.id = "projectTitle";
+        
+    projectDialog.appendChild(projectTitle);
+    projectDialog.appendChild(input);
+    
+    const addProjectButton = document.createElement("button");
+    addProjectButton.id = "addProjectButton";
+    addProjectButton.textContent = "Add Project";
 
     // create a cancel button - will need to refactor this
     const cancelButton = document.createElement("button");
     cancelButton.textContent = "Cancel";
+
     cancelButton.addEventListener("click", () => {
-        newDialog.dialogElement.close();
+        projectDialog.close();
     })
-    
-    newDialog.dialogElement.appendChild(cancelButton);
 
-    content.appendChild(newDialog.dialogElement);
+    projectDialog.appendChild(addProjectButton);
+    projectDialog.appendChild(cancelButton);
 
-    return newDialog;
+    content.appendChild(projectDialog);
+
+    return projectDialog;
 }
 
 function createTodoDialog(project) {
-    const todoDialogId = project.id + "todo"
+    const todoDialog = document.createElement("dialog");
+    todoDialog.id = project.id + "todo";
 
-    const todoDialog = new Dialog(todoDialogId);
+    const newTodo = document.createElement("div");
+    newTodo.textContent = "New Todo: ";
 
-    todoDialog.addLabelAndInput("New Todo: ", project.id + "todoInput");
+    const input = document.createElement("input");
+    input.id = project.id + "todoInput";
+
+    todoDialog.appendChild(newTodo);
+    todoDialog.appendChild(input);
+
+    
     const todoDialogButton = document.createElement("button");
     todoDialogButton.textContent = "Add";
     todoDialogButton.id = project.id + "add";
-    todoDialog.dialogElement.appendChild(todoDialogButton);
+    todoDialog.appendChild(todoDialogButton);
 
     const allTodoDiv = document.getElementById(project.id + "allTodo");
 
@@ -66,9 +68,9 @@ function createTodoDialog(project) {
         todoDialog.dialogElement.close();
     })
     
-    todoDialog.dialogElement.appendChild(cancelButton);
+    todoDialog.appendChild(cancelButton);
 
-    submitTodoClickEvent(todoDialogButton, project, todoDialog.dialogElement, allTodoDiv);
+    submitTodoClickEvent(todoDialogButton, project, todoDialog, allTodoDiv);
 
     return todoDialog;
 }

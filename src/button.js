@@ -25,16 +25,21 @@ class Button {
     }
 }
 
-function createProjectButton(buttonId, textContent, dialog) {
-    const button = new Button(buttonId, textContent);
-    content.appendChild(button.buttonElement);
+function createProjectButton(dialog) {
+    const button = document.createElement("button");
+    button.textContent = "Create Project"
+    button.id = "createProject"
+
+    content.appendChild(button);
 
     // add click events for create project and add project
-    button.showDialogForm(button.buttonElement, dialog);
+    button.addEventListener("click", () => {
+            dialog.show();
+        });
 
     return button
 }
-
+// addProjectClickEvent("addProjectButton", projectDatabase, projectDialog);
 function addProjectClickEvent(buttonId, database, dialog) {
     const button = document.getElementById(buttonId);
     button.addEventListener("click", () => {

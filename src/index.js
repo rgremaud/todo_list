@@ -2,7 +2,7 @@
 import "./reset.css";
 import "./styles.css";
 
-import { createProjectDialog } from "./dialog.js";
+import { createProjectDialog, createProjectDialogNoClass } from "./dialog.js";
 import { Database } from "./database.js";
 import { addProjectClickEvent, createProjectButton } from "./button.js"
 import { createHeader } from "./header.js";
@@ -12,6 +12,7 @@ import { printScreen } from "./display.js";
 /*
 Todo list:
 - Figure out the structure for assigning due dates
+- Rework dialog format so the inputs are on top, then buttons on the bottom
 */
 
 // initialize the site
@@ -19,12 +20,10 @@ function initialize() {
     createHeader();
 
     const projectDatabase = new Database();
+    const projectDialog = createProjectDialog("addProject");
 
-    const newDialog = createProjectDialog("addProject");
-
-    const createProject = createProjectButton("createProject", "Create Project", newDialog.dialogElement);
-
-    addProjectClickEvent("addProjectButton", projectDatabase, newDialog.dialogElement);
+    createProjectButton(projectDialog);
+    addProjectClickEvent("addProjectButton", projectDatabase, projectDialog);
 }
 
 
