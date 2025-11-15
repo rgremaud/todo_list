@@ -2,10 +2,11 @@ export { createProjectButton, addProjectClickEvent }
 
 import { Project } from "./projects";
 import { printScreen } from "./display";
+import { populateSidebar } from "./sidebar";
 
 function createProjectButton(dialog) {
     const button = document.createElement("button");
-    button.textContent = "Create Project"
+    button.textContent = "New Project"
     button.id = "createProject"
 
     sidebar.appendChild(button);
@@ -28,5 +29,6 @@ function addProjectClickEvent(buttonId, database, dialog) {
 
         allProjectContent.textContent = "";
         printScreen(database, content);
+        populateSidebar(database);
     });
 }

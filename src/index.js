@@ -10,7 +10,8 @@ import { createSidebar } from "./sidebar.js";
 
 /*
 Todo list:
-- Rework site layout with a header, then project nav column across left with active project details displayed center screen
+- Link each sidebar div to the project ID
+- Rework the allProjectContent div to only display a single project with a more comprehensive summary of what it includes.
 */
 
 // initialize the site

@@ -8,9 +8,10 @@ function printScreen(database, content) {
     const allProjectContent = document.getElementById("allProjectContent");
     content.appendChild(allProjectContent);
     displayProjects(array, allProjectContent);
-    createSidebar(database);
+    createSidebar();
 }
 
+// no longer necessary
 function displayProjects(array) {
     array.forEach((project) => {
         createDisplayProject(project);
