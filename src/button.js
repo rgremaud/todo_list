@@ -27,8 +27,8 @@ function addProjectClickEvent(buttonId, database, dialog) {
         dialog.close();
         document.getElementById("projectTitle").value = ""
 
-        allProjectContent.textContent = "";
-        printScreen(database, content);
+        activeProject.textContent = "";
+        printScreen(database, content, project);
         populateSidebar(database);
     });
 }

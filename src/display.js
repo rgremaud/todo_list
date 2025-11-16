@@ -3,11 +3,11 @@ export { printScreen, printTodos }
 import { createTodoDialog } from "./dialog";
 import { createSidebar } from "./sidebar";
 
-function printScreen(database, content) {
+function printScreen(database, content, project) {
     const array = database.projectArray;
-    const allProjectContent = document.getElementById("allProjectContent");
-    content.appendChild(allProjectContent);
-    displayProjects(array, allProjectContent);
+    const activeProject = document.getElementById("activeProject");
+    content.appendChild(activeProject);
+    displayActiveProject(activeProject, project);
     createSidebar();
 }
 
@@ -21,16 +21,15 @@ function displayProjects(array) {
     })
 }
 
-function createDisplayProject(project) {
-    const projectDiv = document.createElement("div");
-    projectDiv.className = "project";
-    projectDiv.id = project.id;
-
-    allProjectContent.appendChild(projectDiv);
+function displayActiveProject(activeProjectDiv, project) { 
+    activeProjectDiv.textContent = "";
+    createProjectHeader(project);
+    createAllTodoDiv(project);
+    todoDialog(project);
 }
 
 function createProjectHeader(project) {
-    const projectDiv = document.getElementById(project.id);
+    const activeDiv = document.getElementById("activeProject");
 
     const projHeader = document.createElement("div");
     projHeader.className = "projHeader";
@@ -43,9 +42,10 @@ function createProjectHeader(project) {
     projHeader.appendChild(projName);
     projHeader.appendChild(addTodo);
 
-    projectDiv.appendChild(projHeader);
+    activeDiv.appendChild(projHeader);
 }
 
+// keep but move since not display related
 function todoButton(project) {
     const addTodoButton = document.createElement("button");
     addTodoButton.id = project.id + "addTodoButton";
@@ -55,23 +55,26 @@ function todoButton(project) {
     return addTodoButton
 }
 
+// keep but move since not display related
 function createAllTodoDiv(project) {
     const allTodoDiv = document.createElement("div");
     allTodoDiv.className = "allTodoDiv";
     allTodoDiv.id = project.id + "allTodo";
 
-    const projectDiv = document.getElementById(project.id);
-    projectDiv.appendChild(allTodoDiv);
+    const activeDiv = document.getElementById("activeProject");
+    activeDiv.appendChild(allTodoDiv);
 }
 
+// keep but move since not display related
 function todoDialog(project) {
-    const projectDiv = document.getElementById(project.id);
+    const activeProject = document.getElementById("activeProject");
     const todoDialog = createTodoDialog(project);
-    projectDiv.appendChild(todoDialog);
+    activeProject.appendChild(todoDialog);
 
     openTodo(project);
 }
 
+// keep but move since not display related
 function openTodo(project) {
     const dialogId = project.id + "todo";
     const todoDialog = document.getElementById(dialogId);
@@ -81,7 +84,7 @@ function openTodo(project) {
     })
 }
 
-// refactor this
+// keep, refactor
 function printTodos(project) {
     // Use the project div to find the all todo div
     const allTodoDiv = document.getElementById(project.id + "allTodo")

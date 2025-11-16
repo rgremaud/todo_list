@@ -10,8 +10,7 @@ import { createSidebar } from "./sidebar.js";
 
 /*
 Todo list:
-- Link each sidebar div to the project ID
-- Rework the allProjectContent div to only display a single project with a more comprehensive summary of what it includes.
+- General navigation mostly works - but doesn't refresh todos
 */
 
 // initialize the site

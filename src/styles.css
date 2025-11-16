@@ -28,8 +28,15 @@ header {
 }
 
 #sidebar {
-    width: 30%;
+    width: 20%;
     height: 100%
+}
+
+#activeProject {
+    width: 80%;
+    height: 100%;
+    background-color: white;
+    border: 1px black solid;
 }
 
 #createProject {
@@ -57,10 +64,9 @@ dialog {
 .projHeader {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     margin: 1vh 1vw 1vh 1vw;
     padding-bottom: 1vh;
-    border-bottom: 1px black solid;
 }
 
 .task {

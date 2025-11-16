@@ -8,6 +8,8 @@ make each project title a link that allows you to navigate to that projects todo
 
 export { createSidebar, populateSidebar }
 
+import { printScreen } from "./display";
+
 function createSidebar() {
     const sidebar = document.getElementById("sidebar");
 
@@ -20,13 +22,18 @@ function populateSidebar(database) {
     const sidebarProjectList = document.getElementById("sidebarProjectList");
     sidebarProjectList.textContent = "";
 
+    const content = document.getElementById("content");
+
     const projects = database.projectArray;
 
     projects.forEach((project) => {
         const projectSidebar = document.createElement("div");
         projectSidebar.className = "projectSidebar";
+        projectSidebar.id = project.id+"sb";
         projectSidebar.textContent = project.name;
-
+        projectSidebar.addEventListener("click", () => { 
+            printScreen(database, content, project);
+        })
         sidebarProjectList.appendChild(projectSidebar);
     })
 }
