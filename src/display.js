@@ -4,62 +4,21 @@ import { createTodoDialog } from "./dialog";
 import { createSidebar } from "./sidebar";
 
 function printScreen(database, content, project) {
-    const array = database.projectArray;
-    const activeProject = document.getElementById("activeProject");
-    content.appendChild(activeProject);
-    displayActiveProject(activeProject, project);
     createSidebar();
+    printHeader(project);
 }
 
-// no longer necessary
-function displayProjects(array) {
-    array.forEach((project) => {
-        createDisplayProject(project);
-        createProjectHeader(project);
-        createAllTodoDiv(project);
-        todoDialog(project);
-    })
-}
-
-function displayActiveProject(activeProjectDiv, project) { 
-    activeProjectDiv.textContent = "";
-    createProjectHeader(project);
-    createAllTodoDiv(project);
-    todoDialog(project);
-}
-
-function createProjectHeader(project) {
+function printHeader(project) {
     const projectHeader = document.getElementById("projectHeader");
-    projectHeader.className = "projectHeader";
 
     const projName = document.createElement("h3");
     projName.textContent = project.name;
-
-    const addTodo = todoButton(project);
 
     projectHeader.appendChild(projName);
     projectHeader.appendChild(addTodo);
 }
 
 // keep but move since not display related
-function todoButton(project) {
-    const addTodoButton = document.createElement("button");
-    addTodoButton.id = project.id + "addTodoButton";
-    addTodoButton.className = "addTodo";
-    addTodoButton.textContent = "Add todo!"
-
-    return addTodoButton
-}
-
-// keep but move since not display related
-function createAllTodoDiv(project) {
-    const allTodoDiv = document.createElement("div");
-    allTodoDiv.className = "allTodoDiv";
-    allTodoDiv.id = project.id + "allTodo";
-
-    const activeDiv = document.getElementById("activeProject");
-    activeDiv.appendChild(allTodoDiv);
-}
 
 // keep but move since not display related
 function todoDialog(project) {
