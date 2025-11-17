@@ -18,4 +18,12 @@ export class Project {
         this.tasks.push(task);
     }
 
+    removeTodo(todo) {
+        let index = this.tasks.indexOf(todo)
+
+        if (index !== -1) {
+            this.tasks.splice(index, 1)
+        }
+    }
+
 }

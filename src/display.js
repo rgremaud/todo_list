@@ -8,6 +8,7 @@ function printScreen(database, content, project) {
     resetProjectDivs();
     printHeader(project);
     todoDialog(project);
+    printTodos(project)
 }
 
 function resetProjectDivs() {
@@ -72,6 +73,10 @@ function printTodos(project) {
         const taskDiv = document.createElement("div");
         taskDiv.className = "task";
 
+        // create task content div
+        const taskContent = document.createElement("div");
+        taskContent.className = "taskContent";
+
         // create marker div
         const taskMarker = document.createElement("div");
         taskMarker.className = "taskMarker";
@@ -87,11 +92,9 @@ function printTodos(project) {
             if (taskMarker.style.backgroundColor === "red") {
                 taskMarker.style.backgroundColor = "green";
                 todo.completed = true;
-                console.log(todo)
             } else {
                 taskMarker.style.backgroundColor = "red";
                 todo.completed = false;
-                console.log(todo);
             }
         });
 
@@ -100,8 +103,20 @@ function printTodos(project) {
         taskText.className = "taskText"
         taskText.textContent = todo.task;
 
-        taskDiv.appendChild(taskMarker);
-        taskDiv.appendChild(taskText);
+        // create remove button
+        const remove = document.createElement("button");
+        remove.textContent = "Remove";
+
+        // add remove click event
+        remove.addEventListener("click", () => {
+            project.removeTodo(todo);
+        })
+
+        // append items
+        taskContent.appendChild(taskMarker);
+        taskContent.appendChild(taskText);
+        taskDiv.appendChild(taskContent);
+        taskDiv.appendChild(remove);
 
         projectDetails.appendChild(taskDiv);
     })

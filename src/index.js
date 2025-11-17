@@ -8,11 +8,6 @@ import { addProjectClickEvent, createProjectButton } from "./button.js"
 import { createHeader } from "./header.js";
 import { createSidebar } from "./sidebar.js";
 
-/*
-Todo list:
-- General navigation mostly works - but doesn't refresh todos
-*/
-
 // initialize the site
 function initialize() {
     createHeader();
