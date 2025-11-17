@@ -4,8 +4,10 @@ import { createTodoDialog } from "./dialog";
 import { createSidebar } from "./sidebar";
 
 function printScreen(database, content, project) {
+    // add a central function that resets text content for sidebar and project
     createSidebar();
     printHeader(project);
+
 }
 
 function printHeader(project) {
@@ -15,7 +17,6 @@ function printHeader(project) {
     projName.textContent = project.name;
 
     projectHeader.appendChild(projName);
-    projectHeader.appendChild(addTodo);
 }
 
 // keep but move since not display related
