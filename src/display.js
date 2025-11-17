@@ -6,8 +6,17 @@ import { createSidebar } from "./sidebar";
 function printScreen(database, content, project) {
     // add a central function that resets text content for sidebar and project
     createSidebar();
+    resetDivs();
     printHeader(project);
 
+}
+
+function resetDivs() { 
+    const projectHeader = document.getElementById("projectHeader");
+    projectHeader.textContent = "";
+
+    const projectDetails = document.getElementById("projectDetails");
+    projectDetails.textContent = "";
 }
 
 function printHeader(project) {

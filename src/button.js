@@ -25,6 +25,7 @@ function addProjectClickEvent(buttonId, database, dialog) {
         const project = new Project(document.getElementById("projectTitle").value);
         database.addProject(project);
         dialog.close();
+        document.getElementById("projectTitle").value = ""
 
         printScreen(database, content, project);
         populateSidebar(database);
