@@ -29,20 +29,16 @@ function displayActiveProject(activeProjectDiv, project) {
 }
 
 function createProjectHeader(project) {
-    const activeDiv = document.getElementById("activeProject");
-
-    const projHeader = document.createElement("div");
-    projHeader.className = "projHeader";
+    const projectHeader = document.getElementById("projectHeader");
+    projectHeader.className = "projectHeader";
 
     const projName = document.createElement("h3");
     projName.textContent = project.name;
 
     const addTodo = todoButton(project);
 
-    projHeader.appendChild(projName);
-    projHeader.appendChild(addTodo);
-
-    activeDiv.appendChild(projHeader);
+    projectHeader.appendChild(projName);
+    projectHeader.appendChild(addTodo);
 }
 
 // keep but move since not display related
