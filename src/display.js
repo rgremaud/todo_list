@@ -4,14 +4,13 @@ import { createTodoDialog } from "./dialog";
 import { createSidebar } from "./sidebar";
 
 function printScreen(database, content, project) {
-    // add a central function that resets text content for sidebar and project
     createSidebar();
-    resetDivs();
+    resetProjectDivs();
     printHeader(project);
-
+    todoDialog(project);
 }
 
-function resetDivs() { 
+function resetProjectDivs() {
     const projectHeader = document.getElementById("projectHeader");
     projectHeader.textContent = "";
 
@@ -26,15 +25,22 @@ function printHeader(project) {
     projName.textContent = project.name;
 
     projectHeader.appendChild(projName);
+    addTodoButton(projectHeader, project);
+}
+
+function addTodoButton(projectHeaderDiv, project) {
+    const todoButton = document.createElement("button");
+    todoButton.textContent = "Add Todo";
+    todoButton.id = project.id + "addTodoButton"
+
+    projectHeaderDiv.appendChild(todoButton);
 }
 
 // keep but move since not display related
-
-// keep but move since not display related
 function todoDialog(project) {
-    const activeProject = document.getElementById("activeProject");
+    const projectHeader = document.getElementById("projectHeader");
     const todoDialog = createTodoDialog(project);
-    activeProject.appendChild(todoDialog);
+    projectHeader.appendChild(todoDialog);
 
     openTodo(project);
 }
@@ -52,10 +58,10 @@ function openTodo(project) {
 // keep, refactor
 function printTodos(project) {
     // Use the project div to find the all todo div
-    const allTodoDiv = document.getElementById(project.id + "allTodo")
+    const projectDetails = document.getElementById("projectDetails");
 
     // reset the textContent of div
-    allTodoDiv.textContent = "";
+    projectDetails.textContent = "";
 
     // define current todos
     const todos = project.tasks;
@@ -97,6 +103,6 @@ function printTodos(project) {
         taskDiv.appendChild(taskMarker);
         taskDiv.appendChild(taskText);
 
-        allTodoDiv.appendChild(taskDiv);
+        projectDetails.appendChild(taskDiv);
     })
 }
