@@ -3,6 +3,8 @@ export { printScreen, printTodos }
 import { createTodoDialog } from "./dialog";
 import { createSidebar } from "./sidebar";
 
+import deleteSvg from "./assets/delete.svg";
+
 function printScreen(database, content, project) {
     createSidebar();
     resetProjectDivs();
@@ -25,8 +27,24 @@ function printHeader(project) {
     const projName = document.createElement("h3");
     projName.textContent = project.name;
 
+    const timestamp = document.createElement("div");
+    timestamp.textContent = "Created " + displayTimestamp(project);
+
     projectHeader.appendChild(projName);
+    projectHeader.appendChild(timestamp);
     addTodoButton(projectHeader, project);
+}
+
+// consider moving this back into the project class once functioning
+function displayTimestamp(project) {
+    /* logic to convert to date that can be displayed - factor this into 
+        const displayDate = new Date(this.createdAt);
+        displayDate.toString();
+        */
+    const unformattedDate = new Date(project.createdAt);
+    const formattedDate = unformattedDate.toDateString();
+
+    return formattedDate;
 }
 
 function addTodoButton(projectHeaderDiv, project) {
@@ -105,11 +123,16 @@ function printTodos(project) {
 
         // create remove button
         const remove = document.createElement("button");
-        remove.textContent = "Remove";
+        const svg = document.createElement("img");
+        svg.src = deleteSvg // doesn't work
+        svg.alt = "Remove";
+        remove.className = "removeButton";
+        remove.appendChild(svg);
 
         // add remove click event
         remove.addEventListener("click", () => {
             project.removeTodo(todo);
+            printTodos(project);
         })
 
         // append items

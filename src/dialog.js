@@ -63,7 +63,7 @@ function createTodoDialog(project) {
     const cancelButton = document.createElement("button");
     cancelButton.textContent = "Cancel";
     cancelButton.addEventListener("click", () => {
-        todoDialog.dialogElement.close();
+        todoDialog.close();
     })
 
     todoDialog.appendChild(cancelButton);

@@ -65,7 +65,12 @@ dialog {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    border-bottom: 1px black solid;
+    margin: 1vh 0 1vh 0;
+}
+
+#projectHeader > *,
+.taskContent > * {
+    margin: 0 1vw;
 }
 
 .task {
@@ -74,11 +79,15 @@ dialog {
     cursor: pointer;
 }
 
+.taskContent {
+    display: flex;
+    flex-direction: row;
+}
+
 .taskMarker {
     height: 2vh;
     width: 2vh;
     border-radius: 1vh;
-    margin: .5vh 1vw 0 0;
 }
 
 button {
