@@ -1,13 +1,15 @@
 export { printScreen, printTodos }
 
 import { createTodoDialog } from "./dialog";
-import { createSidebar } from "./sidebar";
+import { populateSidebar } from "./sidebar";
 
 import deleteSvg from "./assets/delete.svg";
 
 function printScreen(database, content, project) {
-    createSidebar();
     resetProjectDivs();
+
+    populateSidebar(database);
+
     printHeader(project);
     todoDialog(project);
     printTodos(project)
@@ -124,7 +126,7 @@ function printTodos(project) {
         // create remove button
         const remove = document.createElement("button");
         const svg = document.createElement("img");
-        svg.src = deleteSvg // doesn't work
+        svg.src = deleteSvg
         svg.alt = "Remove";
         remove.className = "removeButton";
         remove.appendChild(svg);

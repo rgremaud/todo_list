@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 
 body {
-    background-color: gray;
+    background-color: white;
     font-family: "Lato", sans-serif;
     font-optical-sizing: auto;
     font-weight: 300;
@@ -30,6 +30,12 @@ header {
 #sidebar {
     width: 20%;
     height: 100%
+}
+
+#sidebarHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 #activeProject {
@@ -68,8 +74,8 @@ dialog {
     margin: 1vh 0 1vh 0;
 }
 
-#projectHeader > *,
-.taskContent > * {
+#projectHeader>*,
+.taskContent>* {
     margin: 0 1vw;
 }
 
@@ -92,6 +98,8 @@ dialog {
 
 button {
     font-weight: bold;
+
+    background-color: white;
 
     border: none;
     border-radius: 10px;

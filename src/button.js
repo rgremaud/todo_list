@@ -4,12 +4,19 @@ import { Project } from "./projects";
 import { printScreen } from "./display";
 import { populateSidebar } from "./sidebar";
 
+import addSvg from "./assets/add.svg"
+
 function createProjectButton(dialog) {
+    const sidebarHeader = document.getElementById("sidebarHeader");
+
     const button = document.createElement("button");
-    button.textContent = "New Project"
+    const svg = document.createElement("img");
+    svg.src = addSvg;
+    svg.alt = "Add Project"
+    button.appendChild(svg);
     button.id = "createProject"
 
-    sidebar.appendChild(button);
+    sidebarHeader.appendChild(button);
 
     // add click events for create project and add project
     button.addEventListener("click", () => {
@@ -18,7 +25,7 @@ function createProjectButton(dialog) {
 
     return button
 }
-// addProjectClickEvent("addProjectButton", projectDatabase, projectDialog);
+
 function addProjectClickEvent(buttonId, database, dialog) {
     const button = document.getElementById(buttonId);
     button.addEventListener("click", () => {

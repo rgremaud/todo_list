@@ -11,6 +11,7 @@ import { createSidebar } from "./sidebar.js";
 // initialize the site
 function initialize() {
     createHeader();
+    createSidebar();
 
     const projectDatabase = new Database();
     const projectDialog = createProjectDialog("addProject");
