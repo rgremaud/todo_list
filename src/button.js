@@ -28,11 +28,14 @@ function createProjectButton(dialog) {
 
 function addProjectClickEvent(buttonId, database, dialog) {
     const button = document.getElementById(buttonId);
-    button.addEventListener("click", () => {
-        const project = new Project(document.getElementById("projectTitle").value);
+    button.addEventListener("click", (event) => {
+        event.preventDefault();
+        const project = new Project(document.getElementById("projectTitle").value, document.getElementById("projectDescription").value);
         database.addProject(project);
+        console.log(project); // remove
         dialog.close();
-        document.getElementById("projectTitle").value = ""
+        document.getElementById("projectTitle").value = "";
+        document.getElementById("projectDescription").value = "";
 
         printScreen(database, content, project);
         populateSidebar(database);

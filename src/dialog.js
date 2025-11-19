@@ -2,21 +2,40 @@ export { createProjectDialog, createTodoDialog };
 
 import { printTodos } from "./display.js";
 
-
+// rework the createProjectDialog so it is a form for submitting
 function createProjectDialog(dialogId) {
     // create the dialog and assign ID
     const projectDialog = document.createElement("dialog");
     projectDialog.id = dialogId;
 
-    // assign the project title div
-    const projectTitle = document.createElement("div");
+    // create the form
+    const projectForm = document.createElement("form");
+    // projectForm.method = "POST";
+
+    // create line 1 div for project title 
+    const lineOne = document.createElement("div");
+    const projectTitle = document.createElement("label");
     projectTitle.textContent = "Project Title";
 
-    const input = document.createElement("input")
-    input.id = "projectTitle";
+    const titleInput = document.createElement("input")
+    titleInput.id = "projectTitle";
+    projectTitle.htmlFor = "projectTitle";
 
-    projectDialog.appendChild(projectTitle);
-    projectDialog.appendChild(input);
+    lineOne.appendChild(projectTitle);
+    lineOne.appendChild(titleInput);
+
+    // create line 2 for project description
+    const lineTwo = document.createElement("div");
+    const projectDescription = document.createElement("label");
+    projectDescription.textContent = "Description: ";
+
+    const descriptionInput = document.createElement("input");
+    descriptionInput.id = "projectDescription";
+
+    projectDescription.htmlFor = "projectDescription";
+
+    lineTwo.appendChild(projectDescription);
+    lineTwo.appendChild(descriptionInput);
 
     const addProjectButton = document.createElement("button");
     addProjectButton.id = "addProjectButton";
@@ -30,8 +49,12 @@ function createProjectDialog(dialogId) {
         projectDialog.close();
     })
 
-    projectDialog.appendChild(addProjectButton);
-    projectDialog.appendChild(cancelButton);
+    projectForm.appendChild(lineOne);
+    projectForm.appendChild(lineTwo);
+    projectForm.appendChild(addProjectButton);
+    projectForm.appendChild(cancelButton);
+
+    projectDialog.appendChild(projectForm);
 
     content.appendChild(projectDialog);
 

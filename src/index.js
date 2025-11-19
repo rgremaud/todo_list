@@ -10,6 +10,7 @@ import { createSidebar } from "./sidebar.js";
 /*
 Add option to delete projects
 Add localStorage
+Hitting cancel on the add project button seems to clear everything
 */
 
 // initialize the site
