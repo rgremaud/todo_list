@@ -1,5 +1,7 @@
 import { Todo } from "./todos.js";
 
+// Update project to include description, dueDate and priority
+
 export class Project {
     constructor(name) {
         this.name = name

@@ -4,6 +4,8 @@ import { createTodoDialog } from "./dialog";
 import { populateSidebar } from "./sidebar";
 
 import deleteSvg from "./assets/delete.svg";
+import checkBox from "./assets/check_box.svg"
+import blankCheckBox from "./assets/check_box_outline.svg"
 
 function printScreen(database, content, project) {
     resetProjectDivs();
@@ -96,25 +98,33 @@ function printTodos(project) {
         // create task content div
         const taskContent = document.createElement("div");
         taskContent.className = "taskContent";
-
+        /*
+            const button = document.createElement("button");
+            const svg = document.createElement("img");
+            svg.src = addSvg;
+            svg.alt = "Add Project"
+            button.appendChild(svg);
+        */
         // create marker div
-        const taskMarker = document.createElement("div");
+        const taskMarker = document.createElement("img");
         taskMarker.className = "taskMarker";
         // check the task completion status and populate color as red or green
         if (todo.completed === false) {
-            taskMarker.style.backgroundColor = "red";
+            taskMarker.src = blankCheckBox;
+            taskMarker.alt = "Not completed";
         } else {
-            taskMarker.style.backgroundColor = "green";
+            taskMarker.src = checkBox;
+            taskMarker.alt = "Completed";
         }
 
         // add a click event to each taskDiv to toggle color between red and green
         taskDiv.addEventListener("click", () => {
-            if (taskMarker.style.backgroundColor === "red") {
-                taskMarker.style.backgroundColor = "green";
-                todo.completed = true;
+            if (taskMarker.src === blankCheckBox) {
+                taskMarker.src = checkBox;
+                taskMarker.alt = "Completed";
             } else {
-                taskMarker.style.backgroundColor = "red";
-                todo.completed = false;
+                taskMarker.src = blankCheckBox;
+                taskMarker.alt = "Not completed";
             }
         });
 

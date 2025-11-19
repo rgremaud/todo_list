@@ -1,7 +1,11 @@
+/* color scheme
+https://colorhunt.co/palette/f9f8f6efe9e3d9cfc7c9b59c
+*/
+
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 
 body {
-    background-color: white;
+    background-color: #EFE9E3;
     font-family: "Lato", sans-serif;
     font-optical-sizing: auto;
     font-weight: 300;
@@ -18,18 +22,21 @@ header {
     margin: 1vh 1vw;
     font-size: 2rem;
     font-weight: 400;
+    background-color: #EFE9E3;
 }
 
 #content {
     display: flex;
     flex-direction: row;
     width: 100vw;
-    height: 80vh;
+    height: 100vh;
 }
 
 #sidebar {
     width: 20%;
-    height: 100%
+    height: 100%;
+    margin-left: 1vw;
+    background-color: #EFE9E3;
 }
 
 #sidebarHeader {
@@ -41,26 +48,17 @@ header {
 #activeProject {
     width: 80%;
     height: 100%;
-    background-color: white;
-    border: 1px black solid;
+    background-color: #F9F8F6;
 }
 
 #createProject {
     margin: 1vh 1vw;
+    background-color: #EFE9E3;
 }
 
 dialog {
     margin: 1vh 1vw;
     border-radius: 10px;
-}
-
-.project {
-    border: 1px black solid;
-    background-color: white;
-    border-radius: 10px;
-    margin: 1vh 1vw;
-    min-width: 33%;
-    min-height: 50vh;
 }
 
 .allTodoDiv {
@@ -71,6 +69,7 @@ dialog {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+    align-items: center;
     margin: 1vh 0 1vh 0;
 }
 
@@ -88,18 +87,13 @@ dialog {
 .taskContent {
     display: flex;
     flex-direction: row;
-}
-
-.taskMarker {
-    height: 2vh;
-    width: 2vh;
-    border-radius: 1vh;
+    align-items: center;
 }
 
 button {
     font-weight: bold;
 
-    background-color: white;
+    background-color: #F9F8F6;
 
     border: none;
     border-radius: 10px;

@@ -7,6 +7,10 @@ import { Database } from "./database.js";
 import { addProjectClickEvent, createProjectButton } from "./button.js"
 import { createHeader } from "./header.js";
 import { createSidebar } from "./sidebar.js";
+/*
+Add option to delete projects
+Add localStorage
+*/
 
 // initialize the site
 function initialize() {
