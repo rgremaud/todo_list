@@ -3,6 +3,8 @@ export { createProjectDialog, createTodoDialog };
 import { printTodos } from "./display.js";
 
 // rework the createProjectDialog so it is a form for submitting
+// figure out why this is clearing all items when canceled
+// add a due date and priority selection
 function createProjectDialog(dialogId) {
     // create the dialog and assign ID
     const projectDialog = document.createElement("dialog");
@@ -37,6 +39,33 @@ function createProjectDialog(dialogId) {
     lineTwo.appendChild(projectDescription);
     lineTwo.appendChild(descriptionInput);
 
+    // create priority
+    const lineThree = document.createElement("div");
+    const projectPriority = document.createElement("label");
+    projectPriority.textContent = "Priority: ";
+
+    const priorityInput = document.createElement("select");
+    priorityInput.id = "projectPriority";
+
+    const priorityOptions = [
+        { value: "high", text: "High" },
+        { value: "medium", text: "Medium" },
+        { value: "low", text: "Low" },
+    ]
+
+    priorityOptions.forEach(option => {
+        const priorityOption = document.createElement("option");
+        priorityOption.value = option.value;
+        priorityOption.textContent = option.text;
+        priorityInput.appendChild(priorityOption);
+    })
+
+    projectPriority.htmlFor = "projectPriority"
+
+    lineThree.appendChild(projectPriority);
+    lineThree.appendChild(priorityInput);
+
+    // button
     const addProjectButton = document.createElement("button");
     addProjectButton.id = "addProjectButton";
     addProjectButton.textContent = "Add Project";
@@ -51,6 +80,7 @@ function createProjectDialog(dialogId) {
 
     projectForm.appendChild(lineOne);
     projectForm.appendChild(lineTwo);
+    projectForm.appendChild(lineThree);
     projectForm.appendChild(addProjectButton);
     projectForm.appendChild(cancelButton);
 

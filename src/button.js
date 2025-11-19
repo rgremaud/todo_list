@@ -36,6 +36,7 @@ function addProjectClickEvent(buttonId, database, dialog) {
         dialog.close();
         document.getElementById("projectTitle").value = "";
         document.getElementById("projectDescription").value = "";
+        document.getElementById("projectPriority").value = "";
 
         printScreen(database, content, project);
         populateSidebar(database);
