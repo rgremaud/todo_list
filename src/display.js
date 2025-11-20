@@ -3,8 +3,10 @@ export { printScreen, printTodos }
 import { createTodoDialog } from "./dialog";
 import { populateSidebar } from "./sidebar";
 import { deleteProjectClickEvent } from "./button"
+import { storeDatabase } from "./storage";
 
 import deleteSvg from "./assets/delete.svg";
+import removeSvg from "./assets/remove.svg";
 import checkBox from "./assets/check_box.svg"
 import blankCheckBox from "./assets/check_box_outline.svg"
 
@@ -13,14 +15,12 @@ function printScreen(database, project = "") {
     resetProjectDivs();
 
     populateSidebar(database);
-    console.log(database);
+
     if (project !== "") {
-        console.log("project printer");
-        console.log(project);
         printHeader(project, database);
-        todoDialog(project);
-        printTodos(project)
-    } else { console.log("non project printing version") }
+        todoDialog(project, database);
+        printTodos(project, database)
+    }
 }
 
 function resetProjectDivs() {
@@ -68,10 +68,6 @@ function printHeader(project, database) {
 
 // consider moving this back into the project class once functioning
 function displayTimestamp(project) {
-    /* logic to convert to date that can be displayed - factor this into 
-        const displayDate = new Date(this.createdAt);
-        displayDate.toString();
-        */
     const unformattedDate = new Date(project.createdAt);
     const formattedDate = unformattedDate.toDateString();
 
@@ -87,9 +83,9 @@ function addTodoButton(projectHeaderDiv, project) {
 }
 
 // keep but move since not display related
-function todoDialog(project) {
+function todoDialog(project, database) {
     const projectHeader = document.getElementById("projectHeader");
-    const todoDialog = createTodoDialog(project);
+    const todoDialog = createTodoDialog(project, database);
     projectHeader.appendChild(todoDialog);
 
     openTodo(project);
@@ -106,7 +102,7 @@ function openTodo(project) {
 }
 
 // keep, refactor
-function printTodos(project) {
+function printTodos(project, database) {
     // Use the project div to find the all todo div
     const projectDetails = document.getElementById("projectDetails");
 
@@ -126,13 +122,7 @@ function printTodos(project) {
             // create task content div
             const taskContent = document.createElement("div");
             taskContent.className = "taskContent";
-            /*
-                const button = document.createElement("button");
-                const svg = document.createElement("img");
-                svg.src = addSvg;
-                svg.alt = "Add Project"
-                button.appendChild(svg);
-            */
+
             // create marker div
             const taskMarker = document.createElement("img");
             taskMarker.className = "taskMarker";
@@ -164,7 +154,7 @@ function printTodos(project) {
             // create remove button
             const remove = document.createElement("button");
             const svg = document.createElement("img");
-            svg.src = deleteSvg
+            svg.src = removeSvg
             svg.alt = "Remove";
             remove.className = "removeButton";
             remove.appendChild(svg);
@@ -172,6 +162,7 @@ function printTodos(project) {
             // add remove click event
             remove.addEventListener("click", () => {
                 project.removeTodo(todo);
+                storeDatabase(database);
                 printTodos(project);
             })
 

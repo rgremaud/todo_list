@@ -9,7 +9,7 @@ import { createHeader } from "./header.js";
 import { createSidebar } from "./sidebar.js";
 import { loadDatabase } from "./storage.js";
 /*
-Add option to delete projects
+
 Add option to adjust priority on projects
 Add option to assign to-do date on projects
 Add option to adjust to-do date

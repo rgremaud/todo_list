@@ -1,6 +1,7 @@
 export { createProjectDialog, createTodoDialog };
 
 import { printTodos } from "./display.js";
+import { storeDatabase } from "./storage.js";
 
 // rework the createProjectDialog so it is a form for submitting
 // figure out why this is clearing all items when canceled
@@ -91,7 +92,7 @@ function createProjectDialog(dialogId) {
     return projectDialog;
 }
 
-function createTodoDialog(project) {
+function createTodoDialog(project, database) {
     const todoDialog = document.createElement("dialog");
     todoDialog.id = project.id + "todo";
 
@@ -121,18 +122,20 @@ function createTodoDialog(project) {
 
     todoDialog.appendChild(cancelButton);
 
-    submitTodoClickEvent(todoDialogButton, project, todoDialog, allTodoDiv);
+    submitTodoClickEvent(todoDialogButton, project, todoDialog, database);
 
     return todoDialog;
 }
 
-function submitTodoClickEvent(button, project, dialog, allTodoDiv) {
+function submitTodoClickEvent(button, project, dialog, database) {
     const todoInput = project.id + "todoInput";
     button.addEventListener("click", () => {
         project.newTodo(document.getElementById(todoInput).value);
         printTodos(project);
 
         document.getElementById(todoInput).value = "";
+
+        storeDatabase(database);
 
         dialog.close();
     });

@@ -3,12 +3,14 @@ export { storeDatabase, loadDatabase }
 import { Database } from "./database";
 import { Project } from "./projects";
 import { printScreen } from "./display";
+import { Todo } from "./todos";
+
 
 // storeDatabase should be called every time you 
 // create project - done
-// delete project
-// add todo
-// remove todo
+// delete project - done
+// add todo - done
+// remove todo - done
 function storeDatabase(database) {
     const databaseToString = JSON.stringify(database);
 
@@ -17,6 +19,8 @@ function storeDatabase(database) {
 
 function loadDatabase() {
     const retrievedString = localStorage.getItem("userData");
+
+    console.log(retrievedString);
 
     if (retrievedString) {
         const database = JSON.parse(retrievedString);
