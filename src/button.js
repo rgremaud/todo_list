@@ -1,4 +1,4 @@
-export { createProjectButton, addProjectClickEvent }
+export { createProjectButton, addProjectClickEvent, deleteProjectClickEvent }
 
 import { Project } from "./projects";
 import { printScreen } from "./display";
@@ -41,8 +41,16 @@ function addProjectClickEvent(buttonId, database, dialog) {
         document.getElementById("projectDescription").value = "";
         document.getElementById("projectPriority").value = "";
 
-        printScreen(database, content, project);
+        printScreen(database, project);
         populateSidebar(database);
+        storeDatabase(database);
+    });
+}
+
+function deleteProjectClickEvent(button, project, database) {
+    button.addEventListener("click", () => {
+        database.removeProject(project);
+        printScreen(database, project);
         storeDatabase(database);
     });
 }

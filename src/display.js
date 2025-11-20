@@ -2,23 +2,25 @@ export { printScreen, printTodos }
 
 import { createTodoDialog } from "./dialog";
 import { populateSidebar } from "./sidebar";
+import { deleteProjectClickEvent } from "./button"
 
 import deleteSvg from "./assets/delete.svg";
 import checkBox from "./assets/check_box.svg"
 import blankCheckBox from "./assets/check_box_outline.svg"
 
-function printScreen(database, project="") {
+
+function printScreen(database, project = "") {
     resetProjectDivs();
 
     populateSidebar(database);
-
+    console.log(database);
     if (project !== "") {
         console.log("project printer");
         console.log(project);
-        printHeader(project);
+        printHeader(project, database);
         todoDialog(project);
         printTodos(project)
-    } else { console.log("non project printing version")}
+    } else { console.log("non project printing version") }
 }
 
 function resetProjectDivs() {
@@ -29,7 +31,11 @@ function resetProjectDivs() {
     projectDetails.textContent = "";
 }
 
-function printHeader(project) {
+// update this to include the database
+// add functionality to database object to delete a project
+// assign that to the delete project button
+// order seal for toilet dummy
+function printHeader(project, database) {
     const projectHeader = document.getElementById("projectHeader");
 
     const projName = document.createElement("h3");
@@ -44,10 +50,19 @@ function printHeader(project) {
     const projPriority = document.createElement("div");
     projPriority.textContent = project.priority;
 
+    const deleteProject = document.createElement("button");
+    deleteProject.id = "deleteProject"
+    const svg = document.createElement("img")
+    svg.src = deleteSvg;
+    svg.alt = "Delete Project";
+    deleteProject.appendChild(svg);
+    deleteProjectClickEvent(deleteProject, project, database)
+
     projectHeader.appendChild(projName);
     projectHeader.appendChild(projDescription);
     projectHeader.appendChild(projPriority);
     projectHeader.appendChild(timestamp);
+    projectHeader.appendChild(deleteProject);
     addTodoButton(projectHeader, project);
 }
 
@@ -102,7 +117,7 @@ function printTodos(project) {
     const todos = project.tasks;
 
     // iterate over each todo
-    if ( todos !== undefined ) {
+    if (todos !== undefined) {
         todos.forEach((todo) => {
             // create taskDiv
             const taskDiv = document.createElement("div");

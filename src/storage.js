@@ -20,7 +20,7 @@ function loadDatabase() {
 
     if (retrievedString) {
         const database = JSON.parse(retrievedString);
-        
+
         // re instantiate all the database
         const projectDatabase = new Database();
         Object.assign(projectDatabase, database);
@@ -28,11 +28,29 @@ function loadDatabase() {
         // re instantiate all of the projects
         const projects = projectDatabase.projectArray
         projects.forEach((project) => {
+            // define index number
+            let index = projects.indexOf(project)
+            // re instantiate
             const newProject = new Project();
             Object.assign(newProject, project);
-        })
+            // remove the old project item from array
+            projects.splice(index, 1);
+            // add new project item from array
+            projects.splice(index, 0, newProject);
+            // re instantiate all of the todos
+            const todos = project.tasks
 
-        // re instantiate all of the todos
+            todos.forEach((todo) => {
+                let index = todos.indexOf(todo);
+
+                const newTodo = new Todo();
+                Object.assign(newTodo, todo);
+
+                todos.splice(index, 1);
+
+                todos.splice(index, 0, newTodo);
+            })
+        })
 
         printScreen(projectDatabase);
         return projectDatabase

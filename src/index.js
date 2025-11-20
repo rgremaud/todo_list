@@ -10,8 +10,11 @@ import { createSidebar } from "./sidebar.js";
 import { loadDatabase } from "./storage.js";
 /*
 Add option to delete projects
-Add localStorage
-Hitting cancel on the add project button seems to clear everything
+Add option to adjust priority on projects
+Add option to assign to-do date on projects
+Add option to adjust to-do date
+Hitting cancel on the add project button clears the current view
+Creating a project doesn't properly load it
 */
 
 // initialize the site

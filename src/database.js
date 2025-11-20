@@ -16,4 +16,13 @@ class Database {
     addProject(project) {
         this.projectArray.push(project);
     }
+
+    removeProject(project) {
+        let index = this.projectArray.indexOf(project)
+
+        if (index !== -1) {
+            this.projectArray.splice(index, 1);
+        }
+    }
+
 }
