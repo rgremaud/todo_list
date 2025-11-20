@@ -1,6 +1,7 @@
 export { storeDatabase, loadDatabase }
 
 import { Database } from "./database";
+import { Project } from "./projects";
 import { printScreen } from "./display";
 
 // storeDatabase should be called every time you 
@@ -20,8 +21,20 @@ function loadDatabase() {
     if (retrievedString) {
         const database = JSON.parse(retrievedString);
         
+        // re instantiate all the database
         const projectDatabase = new Database();
         Object.assign(projectDatabase, database);
+
+        // re instantiate all of the projects
+        const projects = projectDatabase.projectArray
+        projects.forEach((project) => {
+            const newProject = new Project();
+            Object.assign(newProject, project);
+        })
+
+        // re instantiate all of the todos
+
+        printScreen(projectDatabase);
         return projectDatabase
     } else {
         console.log("No user data found in localStorage.");

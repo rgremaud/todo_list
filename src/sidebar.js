@@ -1,11 +1,3 @@
-/*
-Create a function that appends all project titles to a sidebar
-required input = database
-iterate over the database and pull each project
-build a div for each project 
-make each project title a link that allows you to navigate to that projects todos/etc
-*/
-
 export { createSidebar, populateSidebar }
 
 import { printScreen } from "./display";
@@ -41,7 +33,7 @@ function populateSidebar(database) {
         projectSidebar.id = project.id + "sb";
         projectSidebar.textContent = project.name;
         projectSidebar.addEventListener("click", () => {
-            printScreen(database, content, project);
+            printScreen(database, project);
         })
         sidebarProjectList.appendChild(projectSidebar);
     })
