@@ -3,9 +3,10 @@ import { Todo } from "./todos.js";
 // Update project to include description, dueDate and priority
 
 export class Project {
-    constructor(name, description) {
+    constructor(name, description, priority) {
         this.name = name;
         this.description = description;
+        this.priority = priority;
         this.createdAt = Date.now();
         this.tasks = [];
         this.completed = false;

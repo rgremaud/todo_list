@@ -37,8 +37,12 @@ function printHeader(project) {
     const projDescription = document.createElement("div");
     projDescription.textContent = project.description;
 
+    const projPriority = document.createElement("div");
+    projPriority.textContent = project.priority;
+
     projectHeader.appendChild(projName);
     projectHeader.appendChild(projDescription);
+    projectHeader.appendChild(projPriority);
     projectHeader.appendChild(timestamp);
     addTodoButton(projectHeader, project);
 }
