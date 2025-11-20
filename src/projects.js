@@ -25,5 +25,4 @@ export class Project {
             this.tasks.splice(index, 1)
         }
     }
-
 }

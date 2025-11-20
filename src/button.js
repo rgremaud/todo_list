@@ -5,6 +5,7 @@ import { printScreen } from "./display";
 import { populateSidebar } from "./sidebar";
 
 import addSvg from "./assets/add.svg"
+import { storeDatabase } from "./storage";
 
 function createProjectButton(dialog) {
     const sidebarHeader = document.getElementById("sidebarHeader");
@@ -42,5 +43,6 @@ function addProjectClickEvent(buttonId, database, dialog) {
 
         printScreen(database, content, project);
         populateSidebar(database);
+        storeDatabase(database);
     });
 }
