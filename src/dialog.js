@@ -66,6 +66,18 @@ function createProjectDialog(dialogId) {
     lineThree.appendChild(projectPriority);
     lineThree.appendChild(priorityInput);
 
+    // create due date input
+    const lineFour = document.createElement("div");
+    const projectDueDate = document.createElement("label");
+    projectDueDate.textContent = "Due date: "
+
+    const dueDateInput = document.createElement("input");
+    dueDateInput.id = "projectDueDate";
+    dueDateInput.type = "date";
+
+    lineFour.appendChild(projectDueDate);
+    lineFour.appendChild(dueDateInput);
+
     // button
     const addProjectButton = document.createElement("button");
     addProjectButton.id = "addProjectButton";
@@ -82,6 +94,7 @@ function createProjectDialog(dialogId) {
     projectForm.appendChild(lineOne);
     projectForm.appendChild(lineTwo);
     projectForm.appendChild(lineThree);
+    projectForm.appendChild(lineFour);
     projectForm.appendChild(addProjectButton);
     projectForm.appendChild(cancelButton);
 

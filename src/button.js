@@ -33,13 +33,15 @@ function addProjectClickEvent(buttonId, database, dialog) {
         event.preventDefault();
         const project = new Project(document.getElementById("projectTitle").value,
             document.getElementById("projectDescription").value,
-            document.getElementById("projectPriority").value);
+            document.getElementById("projectPriority").value,
+            document.getElementById("projectDueDate").value);
         database.addProject(project);
         console.log(project); // remove
         dialog.close();
         document.getElementById("projectTitle").value = "";
         document.getElementById("projectDescription").value = "";
         document.getElementById("projectPriority").value = "";
+        document.getElementById("projectDueDate").value = "";
 
         printScreen(database, project);
         populateSidebar(database);
