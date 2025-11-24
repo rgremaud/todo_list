@@ -9,6 +9,7 @@ import { createHeader } from "./header.js";
 import { createSidebar } from "./sidebar.js";
 import { loadDatabase } from "./storage.js";
 /*
+Cancel button of dialog is clearing the activeProject information
 Add option to adjust priority on project
 Add option to adjust to-do date
 Move 'cancel' button to an x on upper right of form

@@ -3,6 +3,8 @@ export { createProjectDialog, createTodoDialog };
 import { printTodos } from "./display.js";
 import { storeDatabase } from "./storage.js";
 
+import cancelSvg from "./assets/cancel.svg";
+
 // rework the createProjectDialog so it is a form for submitting
 // figure out why this is clearing all items when canceled
 // add a due date and priority selection
@@ -85,11 +87,14 @@ function createProjectDialog(dialogId) {
 
     // create a cancel button - will need to refactor this
     const cancelButton = document.createElement("button");
-    cancelButton.textContent = "Cancel";
 
-    cancelButton.addEventListener("click", () => {
-        projectDialog.close();
-    })
+    const cancelSvgButton = document.createElement("img");
+    cancelSvgButton.src = cancelSvg
+    cancelSvgButton.alt = "Cancel"
+
+    cancelButton.appendChild(cancelSvgButton);
+
+    closeDialog(cancelButton, projectDialog);
 
     projectForm.appendChild(lineOne);
     projectForm.appendChild(lineTwo);
@@ -103,6 +108,12 @@ function createProjectDialog(dialogId) {
     content.appendChild(projectDialog);
 
     return projectDialog;
+}
+
+function closeDialog(button, dialog) {
+    button.addEventListener("click", () => {
+        dialog.close();
+    })
 }
 
 function createTodoDialog(project, database) {
@@ -128,7 +139,12 @@ function createTodoDialog(project, database) {
 
     // create a cancel button - will need to refactor this
     const cancelButton = document.createElement("button");
-    cancelButton.textContent = "Cancel";
+
+    const cancelSvgButton = document.createElement("img");
+    cancelSvgButton.src = cancelSvg
+    cancelSvgButton.alt = "Cancel"
+
+    cancelButton.appendChild(cancelSvgButton);
     cancelButton.addEventListener("click", () => {
         todoDialog.close();
     })

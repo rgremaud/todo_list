@@ -97,7 +97,7 @@ function openTodo(project) {
     const todoDialog = document.getElementById(dialogId);
     const button = document.getElementById(project.id + "addTodoButton");
     button.addEventListener("click", () => {
-        todoDialog.show();
+        todoDialog.showModal();
     })
 }
 

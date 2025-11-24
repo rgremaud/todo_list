@@ -21,7 +21,7 @@ function createProjectButton(dialog) {
 
     // add click events for create project and add project
     button.addEventListener("click", () => {
-        dialog.show();
+        dialog.showModal();
     });
 
     return button
