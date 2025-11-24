@@ -23,8 +23,6 @@ function populateSidebar(database) {
     const sidebarProjectList = document.getElementById("sidebarProjectList");
     sidebarProjectList.textContent = "";
 
-    const content = document.getElementById("content");
-
     const projects = database.projectArray;
 
     projects.forEach((project) => {

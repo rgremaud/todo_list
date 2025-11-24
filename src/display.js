@@ -9,7 +9,7 @@ import deleteSvg from "./assets/delete.svg";
 import removeSvg from "./assets/remove.svg";
 import checkBox from "./assets/check_box.svg"
 import blankCheckBox from "./assets/check_box_outline.svg"
-
+import addTodo from "./assets/add_circle.svg"
 
 function printScreen(database, project = "") {
     resetProjectDivs();
@@ -31,10 +31,6 @@ function resetProjectDivs() {
     projectDetails.textContent = "";
 }
 
-// update this to include the database
-// add functionality to database object to delete a project
-// assign that to the delete project button
-// order seal for toilet dummy
 function printHeader(project, database) {
     const projectHeader = document.getElementById("projectHeader");
 
@@ -50,18 +46,35 @@ function printHeader(project, database) {
     const projPriority = document.createElement("div");
     projPriority.textContent = project.priority;
 
+    const dueDate = document.createElement("div");
+    dueDate.textContent = "Due date " + project.dueDate;
+
+    // Testing time until due - doesnt work.
+    const timeDelta = document.createElement("div");
+    const unformattedDueDate = new Date(project.dueDate);
+    const unformattedCreatedDate = new Date(project.createdAt);
+    console.log(unformattedDueDate);
+    console.log(unformattedCreatedDate);
+    const delta = (unformattedDueDate.getTime() - unformattedCreatedDate.getTime())/(1000 * 60 * 60 * 24);
+    timeDelta.textContent = "Due in " + delta;
+
     const deleteProject = document.createElement("button");
     deleteProject.id = "deleteProject"
     const svg = document.createElement("img")
     svg.src = deleteSvg;
-    svg.alt = "Delete Project";
+    svg.alt = "Delete project";
+    const deleteProjectText = document.createElement("div");
+    deleteProjectText.textContent = "Delete project";
     deleteProject.appendChild(svg);
+    deleteProject.appendChild(deleteProjectText);
     deleteProjectClickEvent(deleteProject, project, database)
 
     projectHeader.appendChild(projName);
     projectHeader.appendChild(projDescription);
     projectHeader.appendChild(projPriority);
     projectHeader.appendChild(timestamp);
+    projectHeader.appendChild(dueDate);
+    projectHeader.appendChild(timeDelta);
     projectHeader.appendChild(deleteProject);
     addTodoButton(projectHeader, project);
 }
@@ -76,8 +89,15 @@ function displayTimestamp(project) {
 
 function addTodoButton(projectHeaderDiv, project) {
     const todoButton = document.createElement("button");
-    todoButton.textContent = "Add Todo";
+    const todoButtonText = document.createElement("div");
+    todoButtonText.textContent = "Add todo";
+    const addCircle = document.createElement("img");
+    addCircle.src = addTodo;
+    addCircle.alt = "Add todo";
     todoButton.id = project.id + "addTodoButton"
+
+    todoButton.appendChild(addCircle);
+    todoButton.appendChild(todoButtonText);
 
     projectHeaderDiv.appendChild(todoButton);
 }
@@ -115,18 +135,14 @@ function printTodos(project, database) {
     // iterate over each todo
     if (todos !== undefined) {
         todos.forEach((todo) => {
-            // create taskDiv
             const taskDiv = document.createElement("div");
             taskDiv.className = "task";
 
-            // create task content div
             const taskContent = document.createElement("div");
             taskContent.className = "taskContent";
 
-            // create marker div
             const taskMarker = document.createElement("img");
             taskMarker.className = "taskMarker";
-            // check the task completion status and populate color as red or green
             if (todo.completed === false) {
                 taskMarker.src = blankCheckBox;
                 taskMarker.alt = "Not completed";
@@ -135,7 +151,6 @@ function printTodos(project, database) {
                 taskMarker.alt = "Completed";
             }
 
-            // add a click event to each taskDiv to toggle color between red and green
             taskDiv.addEventListener("click", () => {
                 if (taskMarker.src === blankCheckBox) {
                     taskMarker.src = checkBox;
@@ -146,12 +161,10 @@ function printTodos(project, database) {
                 }
             });
 
-            // create task text div
             const taskText = document.createElement("div");
             taskText.className = "taskText"
             taskText.textContent = todo.task;
 
-            // create remove button
             const remove = document.createElement("button");
             const svg = document.createElement("img");
             svg.src = removeSvg
@@ -159,14 +172,13 @@ function printTodos(project, database) {
             remove.className = "removeButton";
             remove.appendChild(svg);
 
-            // add remove click event
+            // move this to button
             remove.addEventListener("click", () => {
                 project.removeTodo(todo);
                 storeDatabase(database);
                 printTodos(project);
             })
 
-            // append items
             taskContent.appendChild(taskMarker);
             taskContent.appendChild(taskText);
             taskDiv.appendChild(taskContent);

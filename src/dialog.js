@@ -5,9 +5,6 @@ import { storeDatabase } from "./storage.js";
 
 import cancelSvg from "./assets/cancel.svg";
 
-// rework the createProjectDialog so it is a form for submitting
-// figure out why this is clearing all items when canceled
-// add a due date and priority selection
 function createProjectDialog(dialogId) {
     // create the dialog and assign ID
     const projectDialog = document.createElement("dialog");
@@ -96,12 +93,13 @@ function createProjectDialog(dialogId) {
 
     closeDialog(cancelButton, projectDialog);
 
+    lineOne.appendChild(cancelButton);
+
     projectForm.appendChild(lineOne);
     projectForm.appendChild(lineTwo);
     projectForm.appendChild(lineThree);
     projectForm.appendChild(lineFour);
     projectForm.appendChild(addProjectButton);
-    projectForm.appendChild(cancelButton);
 
     projectDialog.appendChild(projectForm);
 
@@ -109,7 +107,7 @@ function createProjectDialog(dialogId) {
 
     return projectDialog;
 }
-
+// move to button
 function closeDialog(button, dialog) {
     button.addEventListener("click", () => {
         dialog.close();
@@ -156,6 +154,7 @@ function createTodoDialog(project, database) {
     return todoDialog;
 }
 
+// move to button section
 function submitTodoClickEvent(button, project, dialog, database) {
     const todoInput = project.id + "todoInput";
     button.addEventListener("click", () => {

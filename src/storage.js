@@ -6,11 +6,6 @@ import { printScreen } from "./display";
 import { Todo } from "./todos";
 
 
-// storeDatabase should be called every time you 
-// create project - done
-// delete project - done
-// add todo - done
-// remove todo - done
 function storeDatabase(database) {
     const databaseToString = JSON.stringify(database);
 
