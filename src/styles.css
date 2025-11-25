@@ -75,11 +75,14 @@ dialog {
 
 #projectHeader {
     display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    margin: 1vh 0 1vh 0;
+    max-height: 5vh;
+    margin-bottom: 1vh;
 }
+
+#projectHeader > button {
+    display: flex;
+}
+
 
 #projectHeader>*,
 .taskContent>* {

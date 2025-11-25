@@ -1,11 +1,13 @@
-export { createProjectButton, addProjectClickEvent, deleteProjectClickEvent }
+export { createProjectButton, addProjectClickEvent, deleteProjectClickEvent, addTodoButton, removeButtonTodo }
 
 import { Project } from "./projects";
 import { printScreen } from "./display";
 import { populateSidebar } from "./sidebar";
+import { storeDatabase } from "./storage";
 
 import addSvg from "./assets/add.svg"
-import { storeDatabase } from "./storage";
+import addTodo from "./assets/add_circle.svg"
+import removeSvg from "./assets/remove.svg";
 
 function createProjectButton(dialog) {
     const sidebarHeader = document.getElementById("sidebarHeader");
@@ -55,4 +57,36 @@ function deleteProjectClickEvent(button, project, database) {
         printScreen(database, project);
         storeDatabase(database);
     });
+}
+
+function addTodoButton(projectHeaderDiv, project) {
+    const todoButton = document.createElement("button");
+    const todoButtonText = document.createElement("div");
+    todoButtonText.textContent = "Add todo";
+    const addCircle = document.createElement("img");
+    addCircle.src = addTodo;
+    addCircle.alt = "Add todo";
+    todoButton.id = project.id + "addTodoButton"
+
+    todoButton.appendChild(addCircle);
+    todoButton.appendChild(todoButtonText);
+
+    projectHeaderDiv.appendChild(todoButton);
+}
+
+function removeButtonTodo() { 
+    const remove = document.createElement("button");
+    const svg = document.createElement("img");
+    svg.src = removeSvg
+    svg.alt = "Remove";
+    remove.className = "removeButton";
+    remove.appendChild(svg);
+    
+    remove.addEventListener("click", () => {
+        project.removeTodo(todo);
+        storeDatabase(database);
+        printTodos(project);
+    })
+
+    return remove;
 }

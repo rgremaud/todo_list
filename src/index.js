@@ -14,6 +14,7 @@ Add option to adjust priority on project
 Add option to adjust to-do date
 Move 'cancel' button to an x on upper right of form
 Creating a project doesn't properly load it
+Doesn't save the progress
 */
 
 // initialize the site
