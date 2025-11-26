@@ -1,8 +1,6 @@
 export { createHeader, createHeaderDivs }
 
 import { deleteProjectClickEvent } from "./button";
-import { Project } from "./projects";
-import { Database } from "./database";
 
 import deleteSvg from "./assets/delete.svg";
 
@@ -29,7 +27,8 @@ function createHeaderDivs(project, database) {
 
     const projPriority = document.createElement("div");
     headerDivs.push(projPriority);
-    projPriority.textContent = "Priority: " + project.priority;
+    // projPriority.textContent = "Priority: " + project.priority; // add new priority here
+    priorityDisplay(project, projPriority);
 
     const timeDelta = document.createElement("div");
     headerDivs.push(timeDelta);
@@ -38,11 +37,8 @@ function createHeaderDivs(project, database) {
     return headerDivs;
 }
 
-function dateDelta(div, project) { 
-    const projectDueDate = new Date(project.dueDate);
-    const currentDate = new Date();
-    const delta = (projectDueDate.getTime() - currentDate.getTime())/(1000 * 60 * 60 * 24);
-    const roundDays = Math.round(delta+1);
+function dateDelta(div, project) {
+    const roundDays = project.dateDelta();
     div.textContent = "Due in " + roundDays + " days!"
 }
 
@@ -56,4 +52,29 @@ function deleteProjectHeader(div, project, database) {
     div.appendChild(svg);
     div.appendChild(deleteProjectText);
     deleteProjectClickEvent(div, project, database) 
+}
+
+function priorityDisplay(project, div) {
+    /*
+    if priority is high = 3 boxes red colors
+    else if medium = 2 boxes and orange
+    else if low = 1 box and yellow
+    create new div for text and then divs for boxes
+    */
+    const priorityText = document.createElement("div");
+    priorityText.textContent = "Priority: ";
+
+    const priorityBoxes = document.createElement("div");
+
+    div.appendChild(priorityText);
+    div.appendChild(priorityBoxes);
+
+    for (let i = 0; i < 3; i++) {
+        const box = document.createElement("div");
+        box.style.backgroundColor = "red";
+        box.style.height = "10px";
+        box.style.width = "5px";
+        box.style.margin = "1px";
+        priorityBoxes.appendChild(box);
+    }
 }

@@ -21,7 +21,6 @@ function createProjectButton(dialog) {
 
     sidebarHeader.appendChild(button);
 
-    // add click events for create project and add project
     button.addEventListener("click", () => {
         dialog.showModal();
     });
@@ -38,7 +37,7 @@ function addProjectClickEvent(buttonId, database, dialog) {
             document.getElementById("projectPriority").value,
             document.getElementById("projectDueDate").value);
         database.addProject(project);
-        console.log(project); // remove
+        
         dialog.close();
         document.getElementById("projectTitle").value = "";
         document.getElementById("projectDescription").value = "";

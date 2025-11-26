@@ -1,7 +1,5 @@
 import { Todo } from "./todos.js";
 
-// Update project to include description, dueDate and priority
-
 export class Project {
     constructor(name, description, priority, dueDate) {
         this.name = name;
@@ -25,5 +23,18 @@ export class Project {
         if (index !== -1) {
             this.tasks.splice(index, 1)
         }
+    }
+
+    dateDelta() { 
+        const projectDueDate = new Date(this.dueDate);
+        const currentDate = new Date();
+        const delta = (projectDueDate.getTime() - currentDate.getTime())/(1000 * 60 * 60 * 24);
+        const roundDays = Math.round(delta+1);
+        
+        return roundDays;
+    }
+
+    updatePriority(newPrio) { 
+        this.priority = newPrio;
     }
 }
