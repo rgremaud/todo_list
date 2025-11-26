@@ -71,10 +71,25 @@ function priorityDisplay(project, div) {
 
     for (let i = 0; i < 3; i++) {
         const box = document.createElement("div");
-        box.style.backgroundColor = "red";
+        box.id = `${i}`;
         box.style.height = "10px";
         box.style.width = "5px";
         box.style.margin = "1px";
         priorityBoxes.appendChild(box);
     }
+    // doesnt work
+    // const box1 = document.getElementById("0");
+    // const box2 = document.getElementById("1");
+    // const box3 = document.getElementById("2");
+
+    // if (project.priority === "high") { 
+    //     box1.style.backgroundColor = "red";
+    //     box2.style.backgroundColor = "red";
+    //     box3.style.backgroundColor = "red";
+    // } else if( project.priority === "medium") {
+    //     box1.style.backgroundColor = "orange";
+    //     box2.style.backgroundColor = "orange";
+    // } else { 
+    //     box1.style.backgroundColor = "yellow";
+    // }
 }
