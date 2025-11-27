@@ -114,18 +114,62 @@ function closeDialog(button, dialog) {
     })
 }
 
+// function createTodoDialog(project, database) {
+//     const todoDialog = document.createElement("dialog");
+//     todoDialog.id = project.id + "todo";
+
+//     const newTodo = document.createElement("div");
+//     newTodo.textContent = "New Todo: ";
+
+//     const input = document.createElement("input");
+//     input.id = project.id + "todoInput";
+
+//     todoDialog.appendChild(newTodo);
+//     todoDialog.appendChild(input);
+
+
+//     const todoDialogButton = document.createElement("button");
+//     todoDialogButton.textContent = "Add";
+//     todoDialogButton.id = project.id + "add";
+//     todoDialog.appendChild(todoDialogButton);
+
+//     const allTodoDiv = document.getElementById(project.id + "allTodo");
+
+//     // create a cancel button - will need to refactor this
+//     const cancelButton = document.createElement("button");
+
+//     const cancelSvgButton = document.createElement("img");
+//     cancelSvgButton.src = cancelSvg
+//     cancelSvgButton.alt = "Cancel"
+
+//     cancelButton.appendChild(cancelSvgButton);
+//     cancelButton.addEventListener("click", () => {
+//         todoDialog.close();
+//     })
+
+//     todoDialog.appendChild(cancelButton);
+
+//     submitTodoClickEvent(todoDialogButton, project, todoDialog, database);
+
+//     return todoDialog;
+// }
+
 function createTodoDialog(project, database) {
     const todoDialog = document.createElement("dialog");
     todoDialog.id = project.id + "todo";
 
-    const newTodo = document.createElement("div");
+    const todoForm = document.createElement("form");
+
+    const lineOne = document.createElement("div");
+    const newTodo = document.createElement("label");
     newTodo.textContent = "New Todo: ";
 
     const input = document.createElement("input");
     input.id = project.id + "todoInput";
+    input.htmlFor = "input";
 
-    todoDialog.appendChild(newTodo);
-    todoDialog.appendChild(input);
+    lineOne.appendChild(newTodo);
+    lineOne.appendChild(input);
 
 
     const todoDialogButton = document.createElement("button");
@@ -147,7 +191,9 @@ function createTodoDialog(project, database) {
         todoDialog.close();
     })
 
-    todoDialog.appendChild(cancelButton);
+    lineOne.appendChild(cancelButton);
+
+    todoForm.appendChild(lineOne);
 
     submitTodoClickEvent(todoDialogButton, project, todoDialog, database);
 

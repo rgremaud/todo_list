@@ -6,7 +6,7 @@ import deleteSvg from "./assets/delete.svg";
 
 function createHeader() { 
     const header = document.getElementById("header");
-    header.textContent = "todoodoo"
+    header.textContent = "ToDooDoo"
 }
 
 function createHeaderDivs(project, database) {

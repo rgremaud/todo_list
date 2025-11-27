@@ -62,22 +62,19 @@ dialog {
     top: 25%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
+    background-color: #F9F8F6;
     border: 1px solid black;
     padding: 20px;
     z-index: 1000;
 }
 
+dialog > button { 
+    background-color: #EFE9E3;
+}
+
 .allTodoDiv {
     margin: 1vh 1vw;
 }
-/*
-#projectHeader {
-    display: flex;
-    max-height: 5vh;
-    margin-bottom: 1vh;
-    margin: 2vh 0 1vh 0;
-} */
 
 #projectHeader {
     display: grid;
