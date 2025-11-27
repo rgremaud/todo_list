@@ -53,7 +53,7 @@ function addProjectClickEvent(buttonId, database, dialog) {
 function deleteProjectClickEvent(button, project, database) {
     button.addEventListener("click", () => {
         database.removeProject(project);
-        printScreen(database, project);
+        printScreen(database, project="");
         storeDatabase(database);
     });
 }

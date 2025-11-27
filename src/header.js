@@ -26,8 +26,8 @@ function createHeaderDivs(project, database) {
     deleteProjectHeader(deleteProject, project, database);
 
     const projPriority = document.createElement("div");
+    projPriority.id = "projPriority";
     headerDivs.push(projPriority);
-    // projPriority.textContent = "Priority: " + project.priority; // add new priority here
     priorityDisplay(project, projPriority);
 
     const timeDelta = document.createElement("div");
@@ -55,41 +55,34 @@ function deleteProjectHeader(div, project, database) {
 }
 
 function priorityDisplay(project, div) {
-    /*
-    if priority is high = 3 boxes red colors
-    else if medium = 2 boxes and orange
-    else if low = 1 box and yellow
-    create new div for text and then divs for boxes
-    */
     const priorityText = document.createElement("div");
     priorityText.textContent = "Priority: ";
 
-    const priorityBoxes = document.createElement("div");
+    const priorityBoxHolder = document.createElement("div");
+    priorityBoxHolder.id = "priorityBoxHolder"
 
     div.appendChild(priorityText);
-    div.appendChild(priorityBoxes);
+    div.appendChild(priorityBoxHolder);
 
-    for (let i = 0; i < 3; i++) {
-        const box = document.createElement("div");
-        box.id = `${i}`;
-        box.style.height = "10px";
-        box.style.width = "5px";
-        box.style.margin = "1px";
-        priorityBoxes.appendChild(box);
+    const box1 = document.createElement("div");
+    box1.className = "priorityBoxes";
+    const box2 = document.createElement("div");
+    box2.className = "priorityBoxes";
+    const box3 = document.createElement("div");
+    box3.className = "priorityBoxes";
+
+    priorityBoxHolder.appendChild(box1);
+    priorityBoxHolder.appendChild(box2);
+    priorityBoxHolder.appendChild(box3);
+
+    if (project.priority === "high") { 
+        box1.style.backgroundColor = "red";
+        box2.style.backgroundColor = "red";
+        box3.style.backgroundColor = "red";
+    } else if( project.priority === "medium") {
+        box1.style.backgroundColor = "orange";
+        box2.style.backgroundColor = "orange";
+    } else { 
+        box1.style.backgroundColor = "green";
     }
-    // doesnt work
-    // const box1 = document.getElementById("0");
-    // const box2 = document.getElementById("1");
-    // const box3 = document.getElementById("2");
-
-    // if (project.priority === "high") { 
-    //     box1.style.backgroundColor = "red";
-    //     box2.style.backgroundColor = "red";
-    //     box3.style.backgroundColor = "red";
-    // } else if( project.priority === "medium") {
-    //     box1.style.backgroundColor = "orange";
-    //     box2.style.backgroundColor = "orange";
-    // } else { 
-    //     box1.style.backgroundColor = "yellow";
-    // }
 }

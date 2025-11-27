@@ -89,7 +89,7 @@ function buildTodoDivs(todos, project) {
                 taskMarker.alt = "Completed";
             }
 
-            updateDivColor(taskDiv);
+            updateDivColor(taskDiv, taskMarker);
 
             const taskText = document.createElement("div");
             taskText.className = "taskText"
@@ -107,7 +107,7 @@ function buildTodoDivs(todos, project) {
     }
 }
 
-function updateDivColor(div) { 
+function updateDivColor(div, taskMarker) { 
     div.addEventListener("click", () => {
                 if (taskMarker.src === blankCheckBox) {
                     taskMarker.src = checkBox;
