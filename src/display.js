@@ -5,6 +5,7 @@ import { populateSidebar } from "./sidebar";
 import { createHeaderDivs } from "./header";
 import { addTodoButton } from "./button";
 import { removeButtonTodo } from "./button";
+import { storeDatabase } from "./storage";
 
 import checkBox from "./assets/check_box.svg"
 import blankCheckBox from "./assets/check_box_outline.svg"
@@ -19,6 +20,7 @@ function printScreen(database, project = "") {
         addTodoDialog(project, database);
         printTodos(project, database)
     }
+    console.log(project);
 }
 
 function resetProjectDivs() {
@@ -67,10 +69,10 @@ function printTodos(project, database) {
 
     const todos = project.tasks;
 
-    buildTodoDivs(todos, project);
+    buildTodoDivs(todos, project, database);
 }
 
-function buildTodoDivs(todos, project) { 
+function buildTodoDivs(todos, project, database) { 
     if (todos !== undefined) {
         todos.forEach((todo) => {
             const taskDiv = document.createElement("div");
@@ -89,7 +91,7 @@ function buildTodoDivs(todos, project) {
                 taskMarker.alt = "Completed";
             }
 
-            updateDivColor(taskDiv, taskMarker);
+            updateDivColor(taskDiv, taskMarker, todo, database);
 
             const taskText = document.createElement("div");
             taskText.className = "taskText"
@@ -107,14 +109,18 @@ function buildTodoDivs(todos, project) {
     }
 }
 
-function updateDivColor(div, taskMarker) { 
+function updateDivColor(div, taskMarker, todo, database) { 
     div.addEventListener("click", () => {
-                if (taskMarker.src === blankCheckBox) {
-                    taskMarker.src = checkBox;
-                    taskMarker.alt = "Completed";
-                } else {
-                    taskMarker.src = blankCheckBox;
-                    taskMarker.alt = "Not completed";
-                }
-            });
+        if (taskMarker.src === blankCheckBox) {
+            taskMarker.src = checkBox;
+            taskMarker.alt = "Completed";
+            todo.completed = true;
+            storeDatabase(database)
+        } else {
+            taskMarker.src = blankCheckBox;
+            taskMarker.alt = "Not completed";
+            todo.complete = false;
+            storeDatabase(database)
+        }
+    });
 }
