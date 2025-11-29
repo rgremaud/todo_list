@@ -98,7 +98,7 @@ function buildTodoDivs(todos, project, database) {
             taskText.className = "taskText"
             taskText.textContent = todo.task;
 
-            const remove = removeButtonTodo();
+            const remove = removeButtonTodo(project, database, todo);
 
             taskContent.appendChild(taskMarker);
             taskContent.appendChild(taskText);

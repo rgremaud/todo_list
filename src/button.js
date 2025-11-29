@@ -4,6 +4,7 @@ import { Project } from "./projects";
 import { printScreen } from "./display";
 import { populateSidebar } from "./sidebar";
 import { storeDatabase } from "./storage";
+import { printTodos } from "./display";
 
 import addSvg from "./assets/add.svg"
 import addTodo from "./assets/add_circle.svg"
@@ -73,7 +74,7 @@ function addTodoButton(projectHeaderDiv, project) {
     projectHeaderDiv.appendChild(todoButton);
 }
 
-function removeButtonTodo() { 
+function removeButtonTodo(project, database, todo) { 
     const remove = document.createElement("button");
     const svg = document.createElement("img");
     svg.src = removeSvg
