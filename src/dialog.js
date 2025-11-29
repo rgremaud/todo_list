@@ -6,17 +6,15 @@ import { storeDatabase } from "./storage.js";
 import cancelSvg from "./assets/cancel.svg";
 
 function createProjectDialog(dialogId) {
-    // create the dialog and assign ID
     const projectDialog = document.createElement("dialog");
     projectDialog.id = dialogId;
 
-    // create the form
     const projectForm = document.createElement("form");
 
-    // create line 1 div for project title 
     const lineOne = document.createElement("div");
+    lineOne.className = "formLine";
     const projectTitle = document.createElement("label");
-    projectTitle.textContent = "Project Title";
+    projectTitle.textContent = "Project Title: ";
 
     const titleInput = document.createElement("input")
     titleInput.id = "projectTitle";
@@ -25,8 +23,8 @@ function createProjectDialog(dialogId) {
     lineOne.appendChild(projectTitle);
     lineOne.appendChild(titleInput);
 
-    // create line 2 for project description
     const lineTwo = document.createElement("div");
+    lineTwo.className = "formLine";
     const projectDescription = document.createElement("label");
     projectDescription.textContent = "Description: ";
 
@@ -38,8 +36,8 @@ function createProjectDialog(dialogId) {
     lineTwo.appendChild(projectDescription);
     lineTwo.appendChild(descriptionInput);
 
-    // create priority
     const lineThree = document.createElement("div");
+    lineThree.className = "formLine";
     const projectPriority = document.createElement("label");
     projectPriority.textContent = "Priority: ";
 
@@ -64,8 +62,8 @@ function createProjectDialog(dialogId) {
     lineThree.appendChild(projectPriority);
     lineThree.appendChild(priorityInput);
 
-    // create due date input
     const lineFour = document.createElement("div");
+    lineFour.className = "formLine";
     const projectDueDate = document.createElement("label");
     projectDueDate.textContent = "Due date: "
 
@@ -76,12 +74,14 @@ function createProjectDialog(dialogId) {
     lineFour.appendChild(projectDueDate);
     lineFour.appendChild(dueDateInput);
 
-    // button
+    const lineFive = document.createElement("div");
+    lineFive.classList = ("formLine", "buttonLine")
     const addProjectButton = document.createElement("button");
     addProjectButton.id = "addProjectButton";
     addProjectButton.textContent = "Add Project";
 
-    // create a cancel button - will need to refactor this
+    lineFive.appendChild(addProjectButton);
+
     const cancelButton = document.createElement("button");
 
     const cancelSvgButton = document.createElement("img");
@@ -98,9 +98,11 @@ function createProjectDialog(dialogId) {
     projectForm.appendChild(lineTwo);
     projectForm.appendChild(lineThree);
     projectForm.appendChild(lineFour);
-    projectForm.appendChild(addProjectButton);
+    projectForm.appendChild(lineFive);
 
     projectDialog.appendChild(projectForm);
+
+    const content = document.getElementById("content")
 
     content.appendChild(projectDialog);
 
@@ -118,9 +120,8 @@ function createTodoDialog(project, database) {
     const todoDialog = document.createElement("dialog");
     todoDialog.id = project.id + "todo";
 
-    const todoForm = document.createElement("form");
-
     const lineOne = document.createElement("div");
+    lineOne.className = "formLine";
     const newTodo = document.createElement("label");
     newTodo.textContent = "New Todo: ";
 
@@ -131,11 +132,15 @@ function createTodoDialog(project, database) {
     lineOne.appendChild(newTodo);
     lineOne.appendChild(input);
 
+    const lineTwo = document.createElement("div");
+    lineTwo.classList = ("formLine", "buttonLine");
+
     const todoDialogButton = document.createElement("button");
     todoDialogButton.textContent = "Add";
     todoDialogButton.id = project.id + "add";
-
-    const allTodoDiv = document.getElementById(project.id + "allTodo");
+    lineTwo.appendChild(todoDialogButton);
+    // temporarily commenting out to remove later
+    // const allTodoDiv = document.getElementById(project.id + "allTodo");
 
     const cancelButton = document.createElement("button");
 
@@ -144,15 +149,12 @@ function createTodoDialog(project, database) {
     cancelSvgButton.alt = "Cancel"
 
     cancelButton.appendChild(cancelSvgButton);
-    // cancelButton.addEventListener("click", () => {
-    //     todoDialog.close();
-    // })
     closeDialog(cancelButton, todoDialog);
 
     lineOne.appendChild(cancelButton);
 
     todoDialog.appendChild(lineOne);
-    todoDialog.appendChild(todoDialogButton);
+    todoDialog.appendChild(lineTwo);
 
     submitTodoClickEvent(todoDialogButton, project, todoDialog, database);
 

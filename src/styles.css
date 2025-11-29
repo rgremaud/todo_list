@@ -72,6 +72,30 @@ dialog > button {
     background-color: #F9F8F6;
 }
 
+.formLine { 
+    display: flex;
+    align-items: center;
+}
+
+label {
+  width: 90px; 
+  margin-right: 10px;
+  margin-bottom: 2px;
+}
+
+.buttonLine {
+    display: flex;
+    justify-content: center;
+}
+
+input[type="text"],
+input[type="date"] {
+  flex-grow: 1; 
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
 .allTodoDiv {
     margin: 1vh 1vw;
 }

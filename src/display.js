@@ -73,6 +73,7 @@ function printTodos(project, database) {
 }
 
 function buildTodoDivs(todos, project, database) { 
+    const projectDetails = document.getElementById("projectDetails");
     if (todos !== undefined) {
         todos.forEach((todo) => {
             const taskDiv = document.createElement("div");
