@@ -2,160 +2,160 @@
 https://colorhunt.co/palette/f9f8f6efe9e3d9cfc7c9b59c
 */
 
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
 
 body {
-    background-color: #EFE9E3;
-    font-family: "Lato", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 300;
-    font-style: normal;
+  background-color: #efe9e3;
+  font-family: "Lato", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
 }
 
 #allProjectContent {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
 }
 
 header {
-    font-size: 2rem;
-    font-weight: 400;
-    background-color: #EFE9E3;
+  font-size: 2rem;
+  font-weight: 400;
+  background-color: #efe9e3;
 }
 
 #content {
-    display: flex;
-    flex-direction: row;
-    width: 100vw;
-    height: 100vh;
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  height: 100vh;
 }
 
 #sidebar {
-    width: 20%;
-    height: 100%;
-    margin-left: 1vw;
-    background-color: #EFE9E3;
+  width: 20%;
+  height: 100%;
+  margin-left: 1vw;
+  background-color: #efe9e3;
 }
 
 #sidebarHeader {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 #activeProject {
-    width: 80%;
-    height: 100%;
-    background-color: #F9F8F6;
+  width: 80%;
+  height: 100%;
+  background-color: #f9f8f6;
 }
 
 #createProject {
-    margin: 1vh 1vw;
-    background-color: #EFE9E3;
+  margin: 1vh 1vw;
+  background-color: #efe9e3;
 }
 
 dialog {
-    /* margin: 1vh 1vw; */
-    border-radius: 10px;
-    position: fixed;
-    top: 25%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #F9F8F6;
-    border: 1px solid black;
-    padding: 10px;
-    z-index: 1;
+  /* margin: 1vh 1vw; */
+  border-radius: 10px;
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f9f8f6;
+  border: 1px solid black;
+  padding: 10px;
+  z-index: 1;
 }
 
-dialog > button { 
-    background-color: #F9F8F6;
+dialog > button {
+  background-color: #f9f8f6;
 }
 
-.formLine { 
-    display: flex;
-    align-items: center;
+.formLine {
+  display: flex;
+  align-items: center;
 }
 
 label {
-  width: 90px; 
+  width: 90px;
   margin-right: 10px;
   margin-bottom: 2px;
 }
 
 .buttonLine {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 input[type="text"],
 input[type="date"] {
-  flex-grow: 1; 
+  flex-grow: 1;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
 .allTodoDiv {
-    margin: 1vh 1vw;
+  margin: 1vh 1vw;
 }
 
 #projectHeader {
-    display: grid;
-    max-height: 10vh;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    margin-bottom: 1vh;
-    margin: 2vh 0 1vh 0;
+  display: grid;
+  max-height: 10vh;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  margin-bottom: 1vh;
+  margin: 2vh 0 1vh 0;
 }
 
 #projectHeader > button {
-    display: flex;
+  display: flex;
 }
 
 #projectHeader > button > * {
-    margin: 1px;
+  margin: 1px;
 }
 
-#projPriority, 
-#priorityBoxHolder { 
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+#projPriority,
+#priorityBoxHolder {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
-.priorityBoxes { 
-    height: 10px;
-    width: 15px;
-    margin: 5px;
+.priorityBoxes {
+  height: 10px;
+  width: 15px;
+  margin: 5px;
 }
 
-#projectHeader>*,
-.taskContent>* {
-    margin: 0 1vw;
+#projectHeader > *,
+.taskContent > * {
+  margin: 0 1vw;
 }
 
 .task {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .taskContent {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 button {
-    font-weight: bold;
+  font-weight: bold;
 
-    background-color: #F9F8F6;
+  background-color: #f9f8f6;
 
-    border: none;
-    border-radius: 10px;
+  border: none;
+  border-radius: 10px;
 
-    padding: .5vh 1.5vw;
-    cursor: pointer;
+  padding: 0.5vh 1.5vw;
+  cursor: pointer;
 }

@@ -6,172 +6,172 @@ import { storeDatabase } from "./storage.js";
 import cancelSvg from "./assets/cancel.svg";
 
 function createProjectDialog(dialogId) {
-    const projectDialog = document.createElement("dialog");
-    projectDialog.id = dialogId;
+  const projectDialog = document.createElement("dialog");
+  projectDialog.id = dialogId;
 
-    const projectForm = document.createElement("form");
+  const projectForm = document.createElement("form");
 
-    const lineOne = document.createElement("div");
-    lineOne.className = "formLine";
-    const projectTitle = document.createElement("label");
-    projectTitle.textContent = "Project Title: ";
+  const lineOne = document.createElement("div");
+  lineOne.className = "formLine";
+  const projectTitle = document.createElement("label");
+  projectTitle.textContent = "Project Title: ";
 
-    const titleInput = document.createElement("input")
-    titleInput.id = "projectTitle";
-    projectTitle.htmlFor = "projectTitle";
+  const titleInput = document.createElement("input");
+  titleInput.id = "projectTitle";
+  projectTitle.htmlFor = "projectTitle";
 
-    lineOne.appendChild(projectTitle);
-    lineOne.appendChild(titleInput);
+  lineOne.appendChild(projectTitle);
+  lineOne.appendChild(titleInput);
 
-    const lineTwo = document.createElement("div");
-    lineTwo.className = "formLine";
-    const projectDescription = document.createElement("label");
-    projectDescription.textContent = "Description: ";
+  const lineTwo = document.createElement("div");
+  lineTwo.className = "formLine";
+  const projectDescription = document.createElement("label");
+  projectDescription.textContent = "Description: ";
 
-    const descriptionInput = document.createElement("input");
-    descriptionInput.id = "projectDescription";
+  const descriptionInput = document.createElement("input");
+  descriptionInput.id = "projectDescription";
 
-    projectDescription.htmlFor = "projectDescription";
+  projectDescription.htmlFor = "projectDescription";
 
-    lineTwo.appendChild(projectDescription);
-    lineTwo.appendChild(descriptionInput);
+  lineTwo.appendChild(projectDescription);
+  lineTwo.appendChild(descriptionInput);
 
-    const lineThree = document.createElement("div");
-    lineThree.className = "formLine";
-    const projectPriority = document.createElement("label");
-    projectPriority.textContent = "Priority: ";
+  const lineThree = document.createElement("div");
+  lineThree.className = "formLine";
+  const projectPriority = document.createElement("label");
+  projectPriority.textContent = "Priority: ";
 
-    const priorityInput = document.createElement("select");
-    priorityInput.id = "projectPriority";
+  const priorityInput = document.createElement("select");
+  priorityInput.id = "projectPriority";
 
-    const priorityOptions = [
-        { value: "high", text: "High" },
-        { value: "medium", text: "Medium" },
-        { value: "low", text: "Low" },
-    ]
+  const priorityOptions = [
+    { value: "high", text: "High" },
+    { value: "medium", text: "Medium" },
+    { value: "low", text: "Low" },
+  ];
 
-    priorityOptions.forEach(option => {
-        const priorityOption = document.createElement("option");
-        priorityOption.value = option.value;
-        priorityOption.textContent = option.text;
-        priorityInput.appendChild(priorityOption);
-    })
+  priorityOptions.forEach((option) => {
+    const priorityOption = document.createElement("option");
+    priorityOption.value = option.value;
+    priorityOption.textContent = option.text;
+    priorityInput.appendChild(priorityOption);
+  });
 
-    projectPriority.htmlFor = "projectPriority"
+  projectPriority.htmlFor = "projectPriority";
 
-    lineThree.appendChild(projectPriority);
-    lineThree.appendChild(priorityInput);
+  lineThree.appendChild(projectPriority);
+  lineThree.appendChild(priorityInput);
 
-    const lineFour = document.createElement("div");
-    lineFour.className = "formLine";
-    const projectDueDate = document.createElement("label");
-    projectDueDate.textContent = "Due date: "
+  const lineFour = document.createElement("div");
+  lineFour.className = "formLine";
+  const projectDueDate = document.createElement("label");
+  projectDueDate.textContent = "Due date: ";
 
-    const dueDateInput = document.createElement("input");
-    dueDateInput.id = "projectDueDate";
-    dueDateInput.type = "date";
+  const dueDateInput = document.createElement("input");
+  dueDateInput.id = "projectDueDate";
+  dueDateInput.type = "date";
 
-    lineFour.appendChild(projectDueDate);
-    lineFour.appendChild(dueDateInput);
+  lineFour.appendChild(projectDueDate);
+  lineFour.appendChild(dueDateInput);
 
-    const lineFive = document.createElement("div");
-    lineFive.classList = ("formLine", "buttonLine")
-    const addProjectButton = document.createElement("button");
-    addProjectButton.id = "addProjectButton";
-    addProjectButton.textContent = "Add Project";
+  const lineFive = document.createElement("div");
+  lineFive.classList = ("formLine", "buttonLine");
+  const addProjectButton = document.createElement("button");
+  addProjectButton.id = "addProjectButton";
+  addProjectButton.textContent = "Add Project";
 
-    lineFive.appendChild(addProjectButton);
+  lineFive.appendChild(addProjectButton);
 
-    const cancelButton = document.createElement("button");
+  const cancelButton = document.createElement("button");
 
-    const cancelSvgButton = document.createElement("img");
-    cancelSvgButton.src = cancelSvg
-    cancelSvgButton.alt = "Cancel"
+  const cancelSvgButton = document.createElement("img");
+  cancelSvgButton.src = cancelSvg;
+  cancelSvgButton.alt = "Cancel";
 
-    cancelButton.appendChild(cancelSvgButton);
+  cancelButton.appendChild(cancelSvgButton);
 
-    closeDialog(cancelButton, projectDialog);
+  closeDialog(cancelButton, projectDialog);
 
-    lineOne.appendChild(cancelButton);
+  lineOne.appendChild(cancelButton);
 
-    projectForm.appendChild(lineOne);
-    projectForm.appendChild(lineTwo);
-    projectForm.appendChild(lineThree);
-    projectForm.appendChild(lineFour);
-    projectForm.appendChild(lineFive);
+  projectForm.appendChild(lineOne);
+  projectForm.appendChild(lineTwo);
+  projectForm.appendChild(lineThree);
+  projectForm.appendChild(lineFour);
+  projectForm.appendChild(lineFive);
 
-    projectDialog.appendChild(projectForm);
+  projectDialog.appendChild(projectForm);
 
-    const content = document.getElementById("content")
+  const content = document.getElementById("content");
 
-    content.appendChild(projectDialog);
+  content.appendChild(projectDialog);
 
-    return projectDialog;
+  return projectDialog;
 }
 
 // move to button
 function closeDialog(button, dialog) {
-    button.addEventListener("click", () => {
-        dialog.close();
-    })
+  button.addEventListener("click", () => {
+    dialog.close();
+  });
 }
 
 function createTodoDialog(project, database) {
-    const todoDialog = document.createElement("dialog");
-    todoDialog.id = project.id + "todo";
+  const todoDialog = document.createElement("dialog");
+  todoDialog.id = project.id + "todo";
 
-    const lineOne = document.createElement("div");
-    lineOne.className = "formLine";
-    const newTodo = document.createElement("label");
-    newTodo.textContent = "New Todo: ";
+  const lineOne = document.createElement("div");
+  lineOne.className = "formLine";
+  const newTodo = document.createElement("label");
+  newTodo.textContent = "New Todo: ";
 
-    const input = document.createElement("input");
-    input.id = project.id + "todoInput";
-    input.htmlFor = "input";
+  const input = document.createElement("input");
+  input.id = project.id + "todoInput";
+  input.htmlFor = "input";
 
-    lineOne.appendChild(newTodo);
-    lineOne.appendChild(input);
+  lineOne.appendChild(newTodo);
+  lineOne.appendChild(input);
 
-    const lineTwo = document.createElement("div");
-    lineTwo.classList = ("formLine", "buttonLine");
+  const lineTwo = document.createElement("div");
+  lineTwo.classList = ("formLine", "buttonLine");
 
-    const todoDialogButton = document.createElement("button");
-    todoDialogButton.textContent = "Add";
-    todoDialogButton.id = project.id + "add";
-    lineTwo.appendChild(todoDialogButton);
-    // temporarily commenting out to remove later
-    // const allTodoDiv = document.getElementById(project.id + "allTodo");
+  const todoDialogButton = document.createElement("button");
+  todoDialogButton.textContent = "Add";
+  todoDialogButton.id = project.id + "add";
+  lineTwo.appendChild(todoDialogButton);
+  // temporarily commenting out to remove later
+  // const allTodoDiv = document.getElementById(project.id + "allTodo");
 
-    const cancelButton = document.createElement("button");
+  const cancelButton = document.createElement("button");
 
-    const cancelSvgButton = document.createElement("img");
-    cancelSvgButton.src = cancelSvg
-    cancelSvgButton.alt = "Cancel"
+  const cancelSvgButton = document.createElement("img");
+  cancelSvgButton.src = cancelSvg;
+  cancelSvgButton.alt = "Cancel";
 
-    cancelButton.appendChild(cancelSvgButton);
-    closeDialog(cancelButton, todoDialog);
+  cancelButton.appendChild(cancelSvgButton);
+  closeDialog(cancelButton, todoDialog);
 
-    lineOne.appendChild(cancelButton);
+  lineOne.appendChild(cancelButton);
 
-    todoDialog.appendChild(lineOne);
-    todoDialog.appendChild(lineTwo);
+  todoDialog.appendChild(lineOne);
+  todoDialog.appendChild(lineTwo);
 
-    submitTodoClickEvent(todoDialogButton, project, todoDialog, database);
+  submitTodoClickEvent(todoDialogButton, project, todoDialog, database);
 
-    return todoDialog;
+  return todoDialog;
 }
 
 // move to button section
 function submitTodoClickEvent(button, project, dialog, database) {
-    const todoInput = project.id + "todoInput";
-    button.addEventListener("click", () => {
-        project.newTodo(document.getElementById(todoInput).value);
-        printTodos(project);
+  const todoInput = project.id + "todoInput";
+  button.addEventListener("click", () => {
+    project.newTodo(document.getElementById(todoInput).value);
+    printTodos(project);
 
-        document.getElementById(todoInput).value = "";
+    document.getElementById(todoInput).value = "";
 
-        storeDatabase(database);
+    storeDatabase(database);
 
-        dialog.close();
-    });
+    dialog.close();
+  });
 }

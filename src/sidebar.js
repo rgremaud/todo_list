@@ -1,38 +1,38 @@
-export { createSidebar, populateSidebar }
+export { createSidebar, populateSidebar };
 
 import { printScreen } from "./display";
 
 function createSidebar() {
-    const sidebar = document.getElementById("sidebar");
+  const sidebar = document.getElementById("sidebar");
 
-    const sidebarHeader = document.createElement("div");
-    sidebarHeader.id = "sidebarHeader";
+  const sidebarHeader = document.createElement("div");
+  sidebarHeader.id = "sidebarHeader";
 
-    const sidebarTitle = document.createElement("h3");
-    sidebarTitle.textContent = "Projects";
+  const sidebarTitle = document.createElement("h3");
+  sidebarTitle.textContent = "Projects";
 
-    const sidebarProjectList = document.createElement("div");
-    sidebarProjectList.id = "sidebarProjectList";
+  const sidebarProjectList = document.createElement("div");
+  sidebarProjectList.id = "sidebarProjectList";
 
-    sidebarHeader.appendChild(sidebarTitle);
-    sidebar.appendChild(sidebarHeader);
-    sidebar.appendChild(sidebarProjectList);
+  sidebarHeader.appendChild(sidebarTitle);
+  sidebar.appendChild(sidebarHeader);
+  sidebar.appendChild(sidebarProjectList);
 }
 
 function populateSidebar(database) {
-    const sidebarProjectList = document.getElementById("sidebarProjectList");
-    sidebarProjectList.textContent = "";
+  const sidebarProjectList = document.getElementById("sidebarProjectList");
+  sidebarProjectList.textContent = "";
 
-    const projects = database.projectArray;
+  const projects = database.projectArray;
 
-    projects.forEach((project) => {
-        const projectSidebar = document.createElement("div");
-        projectSidebar.className = "projectSidebar";
-        projectSidebar.id = project.id + "sb";
-        projectSidebar.textContent = project.name;
-        projectSidebar.addEventListener("click", () => {
-            printScreen(database, project);
-        })
-        sidebarProjectList.appendChild(projectSidebar);
-    })
+  projects.forEach((project) => {
+    const projectSidebar = document.createElement("div");
+    projectSidebar.className = "projectSidebar";
+    projectSidebar.id = project.id + "sb";
+    projectSidebar.textContent = project.name;
+    projectSidebar.addEventListener("click", () => {
+      printScreen(database, project);
+    });
+    sidebarProjectList.appendChild(projectSidebar);
+  });
 }

@@ -1,4 +1,10 @@
-export { createProjectButton, addProjectClickEvent, deleteProjectClickEvent, addTodoButton, removeButtonTodo }
+export {
+  createProjectButton,
+  addProjectClickEvent,
+  deleteProjectClickEvent,
+  addTodoButton,
+  removeButtonTodo,
+};
 
 import { Project } from "./projects";
 import { printScreen } from "./display";
@@ -6,87 +12,89 @@ import { populateSidebar } from "./sidebar";
 import { storeDatabase } from "./storage";
 import { printTodos } from "./display";
 
-import addSvg from "./assets/add.svg"
-import addTodo from "./assets/add_circle.svg"
+import addSvg from "./assets/add.svg";
+import addTodo from "./assets/add_circle.svg";
 import removeSvg from "./assets/remove.svg";
 
 function createProjectButton(dialog) {
-    const sidebarHeader = document.getElementById("sidebarHeader");
+  const sidebarHeader = document.getElementById("sidebarHeader");
 
-    const button = document.createElement("button");
-    const svg = document.createElement("img");
-    svg.src = addSvg;
-    svg.alt = "Add Project"
-    button.appendChild(svg);
-    button.id = "createProject"
+  const button = document.createElement("button");
+  const svg = document.createElement("img");
+  svg.src = addSvg;
+  svg.alt = "Add Project";
+  button.appendChild(svg);
+  button.id = "createProject";
 
-    sidebarHeader.appendChild(button);
+  sidebarHeader.appendChild(button);
 
-    button.addEventListener("click", () => {
-        dialog.showModal();
-    });
+  button.addEventListener("click", () => {
+    dialog.showModal();
+  });
 
-    return button
+  return button;
 }
 
 function addProjectClickEvent(buttonId, database, dialog) {
-    const button = document.getElementById(buttonId);
-    button.addEventListener("click", (event) => {
-        event.preventDefault();
-        const project = new Project(document.getElementById("projectTitle").value,
-            document.getElementById("projectDescription").value,
-            document.getElementById("projectPriority").value,
-            document.getElementById("projectDueDate").value);
-        database.addProject(project);
-        
-        dialog.close();
-        document.getElementById("projectTitle").value = "";
-        document.getElementById("projectDescription").value = "";
-        document.getElementById("projectPriority").value = "";
-        document.getElementById("projectDueDate").value = "";
+  const button = document.getElementById(buttonId);
+  button.addEventListener("click", (event) => {
+    event.preventDefault();
+    const project = new Project(
+      document.getElementById("projectTitle").value,
+      document.getElementById("projectDescription").value,
+      document.getElementById("projectPriority").value,
+      document.getElementById("projectDueDate").value,
+    );
+    database.addProject(project);
 
-        printScreen(database, project);
-        populateSidebar(database);
-        storeDatabase(database);
-    });
+    dialog.close();
+    document.getElementById("projectTitle").value = "";
+    document.getElementById("projectDescription").value = "";
+    document.getElementById("projectPriority").value = "";
+    document.getElementById("projectDueDate").value = "";
+
+    printScreen(database, project);
+    populateSidebar(database);
+    storeDatabase(database);
+  });
 }
 
 function deleteProjectClickEvent(button, project, database) {
-    button.addEventListener("click", () => {
-        database.removeProject(project);
-        printScreen(database, project="");
-        storeDatabase(database);
-    });
+  button.addEventListener("click", () => {
+    database.removeProject(project);
+    printScreen(database, (project = ""));
+    storeDatabase(database);
+  });
 }
 
 function addTodoButton(projectHeaderDiv, project) {
-    const todoButton = document.createElement("button");
-    const todoButtonText = document.createElement("div");
-    todoButtonText.textContent = "Add todo";
-    const addCircle = document.createElement("img");
-    addCircle.src = addTodo;
-    addCircle.alt = "Add todo";
-    todoButton.id = project.id + "addTodoButton"
+  const todoButton = document.createElement("button");
+  const todoButtonText = document.createElement("div");
+  todoButtonText.textContent = "Add todo";
+  const addCircle = document.createElement("img");
+  addCircle.src = addTodo;
+  addCircle.alt = "Add todo";
+  todoButton.id = project.id + "addTodoButton";
 
-    todoButton.appendChild(addCircle);
-    todoButton.appendChild(todoButtonText);
+  todoButton.appendChild(addCircle);
+  todoButton.appendChild(todoButtonText);
 
-    projectHeaderDiv.appendChild(todoButton);
+  projectHeaderDiv.appendChild(todoButton);
 }
 
-function removeButtonTodo(project, database, todo) { 
-    const remove = document.createElement("button");
-    const svg = document.createElement("img");
-    svg.src = removeSvg
-    svg.alt = "Remove";
-    remove.className = "removeButton";
-    remove.appendChild(svg);
-    
-    remove.addEventListener("click", () => {
-        project.removeTodo(todo);
-        storeDatabase(database);
-        printTodos(project);
-    })
+function removeButtonTodo(project, database, todo) {
+  const remove = document.createElement("button");
+  const svg = document.createElement("img");
+  svg.src = removeSvg;
+  svg.alt = "Remove";
+  remove.className = "removeButton";
+  remove.appendChild(svg);
 
-    return remove;
+  remove.addEventListener("click", () => {
+    project.removeTodo(todo);
+    storeDatabase(database);
+    printTodos(project);
+  });
+
+  return remove;
 }

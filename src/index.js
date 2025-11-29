@@ -3,7 +3,7 @@ import "./reset.css";
 import "./styles.css";
 
 import { createProjectDialog } from "./dialog.js";
-import { addProjectClickEvent, createProjectButton } from "./button.js"
+import { addProjectClickEvent, createProjectButton } from "./button.js";
 import { createHeader } from "./header.js";
 import { createSidebar } from "./sidebar.js";
 import { loadDatabase } from "./storage.js";
@@ -15,14 +15,14 @@ Add option to adjust to-do date
 
 // initialize the site
 function initialize() {
-    createHeader();
-    createSidebar();
+  createHeader();
+  createSidebar();
 
-    const projectDatabase = loadDatabase();
-    const projectDialog = createProjectDialog("addProject");
+  const projectDatabase = loadDatabase();
+  const projectDialog = createProjectDialog("addProject");
 
-    createProjectButton(projectDialog);
-    addProjectClickEvent("addProjectButton", projectDatabase, projectDialog);
+  createProjectButton(projectDialog);
+  addProjectClickEvent("addProjectButton", projectDatabase, projectDialog);
 }
 
 initialize();
