@@ -14,8 +14,6 @@ function storeDatabase(database) {
 function loadDatabase() {
   const retrievedString = localStorage.getItem("userData");
 
-  console.log(retrievedString);
-
   if (retrievedString) {
     const database = JSON.parse(retrievedString);
 
@@ -46,7 +44,6 @@ function loadDatabase() {
     printScreen(projectDatabase);
     return projectDatabase;
   } else {
-    console.log("No user data found in localStorage.");
     const projectDatabase = new Database();
     return projectDatabase;
   }

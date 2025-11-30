@@ -1,4 +1,4 @@
-export { Dropdown }
+export { Dropdown };
 
 class Dropdown {
   constructor(dropItems, parentId, headerId, dropDownId) {

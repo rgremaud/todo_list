@@ -44,6 +44,14 @@ header {
   align-items: center;
 }
 
+.dueDate { 
+  font-weight: 500;
+}
+
+.dueDate > * {
+  font-weight: 300;
+}
+
 #activeProject {
   width: 80%;
   height: 100%;
