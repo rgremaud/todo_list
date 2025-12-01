@@ -6,6 +6,7 @@ import { completedStatusClickEvent } from "./button";
 import deleteSvg from "./assets/delete.svg";
 import checkCircleBlack from "./assets/check_circle_black.svg";
 import checkCircleGreen from "./assets/check_circle_green.svg";
+import editSvg from "./assets/edit.svg";
 
 function createHeader() {
   const header = document.getElementById("header");
@@ -41,8 +42,15 @@ function createHeaderDivs(project, database) {
   completedStatusClickEvent(completedStatus, project, database);
   headerDivs.push(completedStatus);
 
+  // Edit dialog click event should open something that mirrors the project Dialog, but instead of creating a project it instead edits existing project
   const editProject = document.createElement("button");
-  editProject.textContent = "Edit project";
+  const editProjectSvg = document.createElement('img');
+  editProjectSvg.src = editSvg;
+  editProjectSvg.alt = "Edit project";
+  const editProjectText = document.createElement("div");
+  editProjectText.textContent = "Edit project";
+  editProject.appendChild(editProjectSvg);
+  editProject.appendChild(editProjectText);
   headerDivs.push(editProject);
 
   return headerDivs;
