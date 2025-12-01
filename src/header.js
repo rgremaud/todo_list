@@ -1,9 +1,11 @@
 export { createHeader, createHeaderDivs };
 
 import { deleteProjectClickEvent } from "./button";
+import { completedStatusClickEvent } from "./button";
 
 import deleteSvg from "./assets/delete.svg";
 import checkCircleBlack from "./assets/check_circle_black.svg";
+import checkCircleGreen from "./assets/check_circle_green.svg";
 
 function createHeader() {
   const header = document.getElementById("header");
@@ -22,32 +24,52 @@ function createHeaderDivs(project, database) {
   headerDivs.push(projDescription);
   projDescription.textContent = "Description: " + project.description;
 
-  const deleteProject = document.createElement("button");
-  headerDivs.push(deleteProject);
-  deleteProjectHeader(deleteProject, project, database);
+  const timeDelta = document.createElement("div");
+  headerDivs.push(timeDelta);
+  dateDelta(timeDelta, project);
 
   const projPriority = document.createElement("div");
   projPriority.id = "projPriority";
   headerDivs.push(projPriority);
   priorityDisplay(project, projPriority);
 
-  const timeDelta = document.createElement("div");
-  headerDivs.push(timeDelta);
-  dateDelta(timeDelta, project);
+  const deleteProject = document.createElement("button");
+  headerDivs.push(deleteProject);
+  deleteProjectHeader(deleteProject, project, database);
 
-  const completedStatus = document.createElement("button");
-
-  const completedStatusSvg = document.createElement("img");
-  completedStatusSvg.src = checkCircleBlack;
-  completedStatusSvg.alt = "Mark completed";
-  const completedStatusText = document.createElement("div");
-  completedStatusText.textContent = "Mark completed";
-  completedStatus.appendChild(completedStatusSvg);
-  completedStatus.appendChild(completedStatusText);
-
+  const completedStatus = completedStatusDiv(project);
+  completedStatusClickEvent(completedStatus, project, database);
   headerDivs.push(completedStatus);
 
+  const editProject = document.createElement("button");
+  editProject.textContent = "Edit project";
+  headerDivs.push(editProject);
+
   return headerDivs;
+}
+
+function completedStatusDiv(project, database) {
+  const completedStatus = document.createElement("button");
+
+  if (project.completed === false) {
+    populateCompletedSvg(completedStatus, checkCircleBlack, "Mark completed", "Mark completed", "black")
+  } else {
+    populateCompletedSvg(completedStatus, checkCircleGreen, "Project completed!", "Project completed!", "#78A75A")
+  }
+
+  return completedStatus;
+}
+
+function populateCompletedSvg(parentDiv, svgSrc, altText, textContent, color) {
+  const completedStatusSvg = document.createElement("img");
+  completedStatusSvg.src = svgSrc;
+  completedStatusSvg.alt = altText;
+  const completedStatusText = document.createElement("div");
+  completedStatusText.textContent = textContent;
+  completedStatusText.style.color = color
+
+  parentDiv.appendChild(completedStatusSvg);
+  parentDiv.appendChild(completedStatusText);
 }
 
 function dateDelta(div, project) {
