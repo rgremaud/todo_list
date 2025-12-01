@@ -4,6 +4,8 @@ export {
   deleteProjectClickEvent,
   addTodoButton,
   removeButtonTodo,
+  closeDialog,
+  submitTodoClickEvent,
 };
 
 import { Project } from "./projects";
@@ -97,4 +99,24 @@ function removeButtonTodo(project, database, todo) {
   });
 
   return remove;
+}
+
+function closeDialog(button, dialog) {
+  button.addEventListener("click", () => {
+    dialog.close();
+  });
+}
+
+function submitTodoClickEvent(button, project, dialog, database) {
+  const todoInput = project.id + "todoInput";
+  button.addEventListener("click", () => {
+    project.newTodo(document.getElementById(todoInput).value);
+    printTodos(project);
+
+    document.getElementById(todoInput).value = "";
+
+    storeDatabase(database);
+
+    dialog.close();
+  });
 }

@@ -1,11 +1,11 @@
 export { printScreen, printTodos };
 
-import { createTodoDialog } from "./dialog";
 import { populateSidebar } from "./sidebar";
 import { createHeaderDivs } from "./header";
 import { addTodoButton } from "./button";
 import { removeButtonTodo } from "./button";
 import { storeDatabase } from "./storage";
+import { addTodoDialog } from "./dialog";
 
 import checkBox from "./assets/check_box.svg";
 import blankCheckBox from "./assets/check_box_outline.svg";
@@ -41,25 +41,6 @@ function printHeader(project, database) {
   });
 
   addTodoButton(projectHeader, project);
-}
-
-// keep but move since not display related
-function addTodoDialog(project, database) {
-  const projectHeader = document.getElementById("projectHeader");
-  const todoDialog = createTodoDialog(project, database);
-  projectHeader.appendChild(todoDialog);
-
-  openTodo(project);
-}
-
-// keep but move since not display related
-function openTodo(project) {
-  const dialogId = project.id + "todo";
-  const todoDialog = document.getElementById(dialogId);
-  const button = document.getElementById(project.id + "addTodoButton");
-  button.addEventListener("click", () => {
-    todoDialog.showModal();
-  });
 }
 
 function printTodos(project, database) {

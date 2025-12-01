@@ -1,7 +1,7 @@
-export { createProjectDialog, createTodoDialog };
+export { createProjectDialog, createTodoDialog, addTodoDialog };
 
-import { printTodos } from "./display.js";
-import { storeDatabase } from "./storage.js";
+import { closeDialog } from "./button.js";
+import { submitTodoClickEvent } from "./button.js";
 
 import cancelSvg from "./assets/cancel.svg";
 
@@ -109,13 +109,6 @@ function createProjectDialog(dialogId) {
   return projectDialog;
 }
 
-// move to button
-function closeDialog(button, dialog) {
-  button.addEventListener("click", () => {
-    dialog.close();
-  });
-}
-
 function createTodoDialog(project, database) {
   const todoDialog = document.createElement("dialog");
   todoDialog.id = project.id + "todo";
@@ -139,8 +132,6 @@ function createTodoDialog(project, database) {
   todoDialogButton.textContent = "Add";
   todoDialogButton.id = project.id + "add";
   lineTwo.appendChild(todoDialogButton);
-  // temporarily commenting out to remove later
-  // const allTodoDiv = document.getElementById(project.id + "allTodo");
 
   const cancelButton = document.createElement("button");
 
@@ -161,17 +152,19 @@ function createTodoDialog(project, database) {
   return todoDialog;
 }
 
-// move to button section
-function submitTodoClickEvent(button, project, dialog, database) {
-  const todoInput = project.id + "todoInput";
+function addTodoDialog(project, database) {
+  const projectHeader = document.getElementById("projectHeader");
+  const todoDialog = createTodoDialog(project, database);
+  projectHeader.appendChild(todoDialog);
+
+  openTodo(project);
+}
+
+function openTodo(project) {
+  const dialogId = project.id + "todo";
+  const todoDialog = document.getElementById(dialogId);
+  const button = document.getElementById(project.id + "addTodoButton");
   button.addEventListener("click", () => {
-    project.newTodo(document.getElementById(todoInput).value);
-    printTodos(project);
-
-    document.getElementById(todoInput).value = "";
-
-    storeDatabase(database);
-
-    dialog.close();
+    todoDialog.showModal();
   });
 }

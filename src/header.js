@@ -3,6 +3,7 @@ export { createHeader, createHeaderDivs };
 import { deleteProjectClickEvent } from "./button";
 
 import deleteSvg from "./assets/delete.svg";
+import checkCircleBlack from "./assets/check_circle_black.svg";
 
 function createHeader() {
   const header = document.getElementById("header");
@@ -34,12 +35,32 @@ function createHeaderDivs(project, database) {
   headerDivs.push(timeDelta);
   dateDelta(timeDelta, project);
 
+  const completedStatus = document.createElement("button");
+
+  const completedStatusSvg = document.createElement("img");
+  completedStatusSvg.src = checkCircleBlack;
+  completedStatusSvg.alt = "Mark completed";
+  const completedStatusText = document.createElement("div");
+  completedStatusText.textContent = "Mark completed";
+  completedStatus.appendChild(completedStatusSvg);
+  completedStatus.appendChild(completedStatusText);
+
+  headerDivs.push(completedStatus);
+
   return headerDivs;
 }
 
 function dateDelta(div, project) {
   const roundDays = project.dateDelta();
-  div.textContent = "Due in " + roundDays + " days!";
+  if (roundDays <= 0) {
+    div.textContent = "Project is past due!";
+    div.style.color = "red";
+    div.style.fontWeight = "bold";
+  } else if (roundDays === 1) {
+    div.textContent = "Due in 24 hours!";
+  } else {
+    div.textContent = "Due in " + roundDays + " days!";
+  }
 }
 
 function deleteProjectHeader(div, project, database) {
