@@ -1,4 +1,4 @@
-export { createProjectDialog, createTodoDialog, addTodoDialog };
+export { createProjectDialog, createTodoDialog, addTodoDialog, editProjectDialog };
 
 import { closeDialog } from "./button.js";
 import { submitTodoClickEvent } from "./button.js";
@@ -167,4 +167,109 @@ function openTodo(project) {
   button.addEventListener("click", () => {
     todoDialog.showModal();
   });
+}
+
+function editProjectDialog(headerDiv, dialogId, project, database) {
+  const editProjectDialog = document.createElement("dialog");
+  editProjectDialog.id = dialogId;
+  editProjectDialog.className = "editDialog";
+
+  const projectForm = document.createElement("form");
+
+  const lineOne = document.createElement("div");
+  lineOne.className = "formLine";
+  const projectTitle = document.createElement("label");
+  projectTitle.textContent = "Project Title: ";
+
+  const titleInput = document.createElement("input");
+  titleInput.id = "projectTitle";
+  titleInput.value = project.name;
+  projectTitle.htmlFor = "projectTitle";
+
+  lineOne.appendChild(projectTitle);
+  lineOne.appendChild(titleInput);
+
+  const lineTwo = document.createElement("div");
+  lineTwo.className = "formLine";
+  const projectDescription = document.createElement("label");
+  projectDescription.textContent = "Description: ";
+
+  const descriptionInput = document.createElement("input");
+  descriptionInput.value = project.description;
+  descriptionInput.id = "projectDescription";
+
+  projectDescription.htmlFor = "projectDescription";
+
+  lineTwo.appendChild(projectDescription);
+  lineTwo.appendChild(descriptionInput);
+
+  const lineThree = document.createElement("div");
+  lineThree.className = "formLine";
+  const projectPriority = document.createElement("label");
+  projectPriority.textContent = "Priority: ";
+
+  const priorityInput = document.createElement("select");
+  priorityInput.id = "projectPriority";
+
+  const priorityOptions = [
+    { value: "high", text: "High" },
+    { value: "medium", text: "Medium" },
+    { value: "low", text: "Low" },
+  ];
+
+  priorityOptions.forEach((option) => {
+    const priorityOption = document.createElement("option");
+    priorityOption.value = option.value;
+    priorityOption.textContent = option.text;
+    priorityInput.appendChild(priorityOption);
+  });
+
+  projectPriority.htmlFor = "projectPriority";
+
+  lineThree.appendChild(projectPriority);
+  lineThree.appendChild(priorityInput);
+
+  const lineFour = document.createElement("div");
+  lineFour.className = "formLine";
+  const projectDueDate = document.createElement("label");
+  projectDueDate.textContent = "Due date: ";
+
+  const dueDateInput = document.createElement("input");
+  dueDateInput.id = "projectDueDate";
+  dueDateInput.type = "date";
+
+  lineFour.appendChild(projectDueDate);
+  lineFour.appendChild(dueDateInput);
+
+  const lineFive = document.createElement("div");
+  lineFive.classList = ("formLine", "buttonLine");
+  const editProjectButton = document.createElement("button");
+  editProjectButton.id = "addProjectButton";
+  editProjectButton.textContent = "Edit Project";
+
+  lineFive.appendChild(editProjectButton);
+
+  const cancelButton = document.createElement("button");
+
+  const cancelSvgButton = document.createElement("img");
+  cancelSvgButton.src = cancelSvg;
+  cancelSvgButton.alt = "Cancel";
+
+  cancelButton.appendChild(cancelSvgButton);
+
+  closeDialog(cancelButton, editProjectDialog, database);
+
+  lineOne.appendChild(cancelButton);
+
+  projectForm.appendChild(lineOne);
+  projectForm.appendChild(lineTwo);
+  projectForm.appendChild(lineThree);
+  projectForm.appendChild(lineFour);
+  projectForm.appendChild(lineFive);
+
+  editProjectDialog.appendChild(projectForm);
+
+  headerDiv.appendChild(editProjectDialog);
+
+  return editProjectDialog;
 }

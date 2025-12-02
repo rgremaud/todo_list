@@ -50,6 +50,7 @@ function populateSidebar(database) {
   dueThirty.textContent = "Due in thirty days";
 
   const projects = database.projectArray;
+  console.log(projects);
 
   projects.forEach((project) => {
     const projectSidebar = projectSidebarDiv(database, project);

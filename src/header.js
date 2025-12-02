@@ -2,6 +2,8 @@ export { createHeader, createHeaderDivs };
 
 import { deleteProjectClickEvent } from "./button";
 import { completedStatusClickEvent } from "./button";
+import { editProjectDialog } from "./dialog";
+import { editProjectClick } from "./button";
 
 import deleteSvg from "./assets/delete.svg";
 import checkCircleBlack from "./assets/check_circle_black.svg";
@@ -14,6 +16,10 @@ function createHeader() {
 }
 
 function createHeaderDivs(project, database) {
+  const header = document.getElementById("header");
+  const editProjectDial = editProjectDialog(header, project.id+"edit", project);
+  header.appendChild(editProjectDial);
+
   const headerDivs = [];
 
   const projName = document.createElement("h3");
@@ -51,12 +57,13 @@ function createHeaderDivs(project, database) {
   editProjectText.textContent = "Edit project";
   editProject.appendChild(editProjectSvg);
   editProject.appendChild(editProjectText);
+  editProjectClick(editProject, editProjectDial, database);
   headerDivs.push(editProject);
 
   return headerDivs;
 }
 
-function completedStatusDiv(project, database) {
+function completedStatusDiv(project) {
   const completedStatus = document.createElement("button");
 
   if (project.completed === false) {

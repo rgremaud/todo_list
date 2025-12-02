@@ -7,6 +7,7 @@ export {
     closeDialog,
     submitTodoClickEvent,
     completedStatusClickEvent,
+    editProjectClick,
 };
 
 import { Project } from "./projects";
@@ -36,6 +37,12 @@ function createProjectButton(dialog) {
     });
 
     return button;
+}
+
+function editProjectClick(button, dialog) {
+  button.addEventListener("click", () => {
+        dialog.showModal();
+    });
 }
 
 function addProjectClickEvent(buttonId, database, dialog) {
@@ -102,9 +109,10 @@ function removeButtonTodo(project, database, todo) {
     return remove;
 }
 
-function closeDialog(button, dialog) {
+function closeDialog(/*database*/ button, dialog, /*project*/) {
     button.addEventListener("click", () => {
-        dialog.close();
+      // printScreen(database, project);
+      dialog.close();
     });
 }
 
