@@ -40,8 +40,8 @@ export class Project {
     this.priority = newPrio;
   }
 
-  updateStatus() { 
-    if (this.completed === false ) {
+  updateStatus() {
+    if (this.completed === false) {
       this.completed = true;
     } else {
       this.completed = false;

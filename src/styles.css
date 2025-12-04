@@ -44,7 +44,7 @@ header {
   align-items: center;
 }
 
-.dueDate { 
+.dueDate {
   font-weight: 500;
 }
 
@@ -75,7 +75,7 @@ dialog {
   z-index: 1;
 }
 
-.editDialog { 
+.editDialog {
   font-size: 1rem;
 }
 

@@ -17,7 +17,11 @@ function createHeader() {
 
 function createHeaderDivs(project, database) {
   const header = document.getElementById("header");
-  const editProjectDial = editProjectDialog(header, project.id+"edit", project);
+  const editProjectDial = editProjectDialog(
+    header,
+    project.id + "edit",
+    project,
+  );
   header.appendChild(editProjectDial);
 
   const headerDivs = [];
@@ -50,7 +54,7 @@ function createHeaderDivs(project, database) {
 
   // Edit dialog click event should open something that mirrors the project Dialog, but instead of creating a project it instead edits existing project
   const editProject = document.createElement("button");
-  const editProjectSvg = document.createElement('img');
+  const editProjectSvg = document.createElement("img");
   editProjectSvg.src = editSvg;
   editProjectSvg.alt = "Edit project";
   const editProjectText = document.createElement("div");
@@ -67,9 +71,21 @@ function completedStatusDiv(project) {
   const completedStatus = document.createElement("button");
 
   if (project.completed === false) {
-    populateCompletedSvg(completedStatus, checkCircleBlack, "Mark completed", "Mark completed", "black")
+    populateCompletedSvg(
+      completedStatus,
+      checkCircleBlack,
+      "Mark completed",
+      "Mark completed",
+      "black",
+    );
   } else {
-    populateCompletedSvg(completedStatus, checkCircleGreen, "Project completed!", "Project completed!", "#78A75A")
+    populateCompletedSvg(
+      completedStatus,
+      checkCircleGreen,
+      "Project completed!",
+      "Project completed!",
+      "#78A75A",
+    );
   }
 
   return completedStatus;
@@ -81,7 +97,7 @@ function populateCompletedSvg(parentDiv, svgSrc, altText, textContent, color) {
   completedStatusSvg.alt = altText;
   const completedStatusText = document.createElement("div");
   completedStatusText.textContent = textContent;
-  completedStatusText.style.color = color
+  completedStatusText.style.color = color;
 
   parentDiv.appendChild(completedStatusSvg);
   parentDiv.appendChild(completedStatusText);

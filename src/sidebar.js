@@ -44,10 +44,10 @@ function populateSidebar(database) {
   due24.textContent = "Due in 24 hours";
   const dueSeven = document.getElementById("dueSeven");
   dueSeven.textContent = "";
-  dueSeven.textContent = "Due in seven days";
+  dueSeven.textContent = "Due next seven days";
   const dueThirty = document.getElementById("dueThirty");
   dueThirty.textContent = "";
-  dueThirty.textContent = "Due in thirty days";
+  dueThirty.textContent = "Due next thirty days";
 
   const projects = database.projectArray;
   console.log(projects);
@@ -71,6 +71,7 @@ function projectSidebarDiv(database, project) {
 }
 
 function sortByDate(project, projectSidebar, due24, dueSeven, dueThirty) {
+  console.log(project.dateDelta());
   if (project.dateDelta() <= 1) {
     due24.appendChild(projectSidebar);
   } else if (project.dateDelta() <= 7) {
