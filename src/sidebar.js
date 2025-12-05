@@ -70,7 +70,6 @@ function projectSidebarDiv(database, project) {
 }
 
 function sortByDate(project, projectSidebar, due24, dueSeven, dueThirty) {
-  console.log(project.dateDelta());
   if (project.dateDelta() <= 1) {
     due24.appendChild(projectSidebar);
   } else if (project.dateDelta() <= 7) {

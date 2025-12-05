@@ -51,16 +51,16 @@ function completedStatusDiv(project) {
     populateCompletedSvg(
       completedStatus,
       checkCircleBlack,
-      "Mark completed",
-      "Mark completed",
+      "Mark Project Completed",
+      "Mark Project Completed",
       "black",
     );
   } else {
     populateCompletedSvg(
       completedStatus,
       checkCircleGreen,
-      "Project completed!",
-      "Project completed!",
+      "Project Completed!",
+      "Project Completed!",
       "#78A75A",
     );
   }
