@@ -20,7 +20,6 @@ function printScreen(database, project = "") {
     addTodoDialog(project, database);
     printTodos(project, database);
   }
-  console.log(project);
 }
 
 function resetProjectDivs() {

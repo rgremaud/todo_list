@@ -8,7 +8,7 @@ export {
 import { closeDialog } from "./button.js";
 import { submitTodoClickEvent } from "./button.js";
 import { createCancelButton } from "./button.js";
-import { editProjectClickEvent } from "./button.js";
+import { submitProjectEdit } from "./button.js";
 
 
 function createProjectDialog(dialogId) {
@@ -125,8 +125,6 @@ function editProjectDialog(headerDiv, dialogId, project, database) {
 
   editProjectDialog.appendChild(projectForm);
 
-  editProjectClickEvent("editProjectButton", database, editProjectDialog, project);
-
   headerDiv.appendChild(editProjectDialog);
 
   return editProjectDialog;
@@ -170,6 +168,7 @@ function editProjectFormLine(dialog, project, database) {
   const editProjectButton = document.createElement("button");
   editProjectButton.id = "editProjectButton";
   editProjectButton.textContent = "Edit Project";
+  submitProjectEdit("editProjectButton", database, editProjectDialog, project);
   lineFive.appendChild(editProjectButton);
 
   const cancelButton = createCancelButton(dialog);
