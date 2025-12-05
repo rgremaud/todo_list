@@ -7,18 +7,15 @@ import { addProjectClickEvent, createProjectButton } from "./button.js";
 import { createHeader } from "./header.js";
 import { createSidebar } from "./sidebar.js";
 import { loadDatabase } from "./storage.js";
-/*
-Cancel button of dialog is clearing the activeProject information
-Add option to adjust priority on project
-Add option to adjust to-do date
-*/
+import { printScreen } from "./display.js";
 
-// initialize the site
 function initialize() {
   createHeader();
   createSidebar();
 
   const projectDatabase = loadDatabase();
+  const projects = projectDatabase.projectArray;
+  printScreen(projectDatabase, projects[0]);
   const projectDialog = createProjectDialog("addProject");
 
   createProjectButton(projectDialog);

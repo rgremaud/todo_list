@@ -45,6 +45,9 @@ function loadDatabase() {
     return projectDatabase;
   } else {
     const projectDatabase = new Database();
+    const example = new Project("Test project", "Here is a fun example", "medium", "2025-12-25");
+    example.newTodo("Add your todos here!");
+    projectDatabase.addProject(example);
     return projectDatabase;
   }
 }
