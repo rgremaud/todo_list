@@ -2,13 +2,10 @@ export { createHeader, createHeaderDivs };
 
 import { deleteProjectClickEvent } from "./button";
 import { completedStatusClickEvent } from "./button";
-import { editProjectDialog } from "./dialog";
-import { editProjectClick } from "./button";
 
 import deleteSvg from "./assets/delete.svg";
 import checkCircleBlack from "./assets/check_circle_black.svg";
 import checkCircleGreen from "./assets/check_circle_green.svg";
-import editSvg from "./assets/edit.svg";
 
 function createHeader() {
   const header = document.getElementById("header");
@@ -16,14 +13,6 @@ function createHeader() {
 }
 
 function createHeaderDivs(project, database) {
-  const header = document.getElementById("header");
-  const editProjectDial = editProjectDialog(
-    header,
-    project.id + "edit",
-    project,
-  );
-  header.appendChild(editProjectDial);
-
   const headerDivs = [];
 
   const projName = document.createElement("h3");
@@ -51,18 +40,6 @@ function createHeaderDivs(project, database) {
   const completedStatus = completedStatusDiv(project);
   completedStatusClickEvent(completedStatus, project, database);
   headerDivs.push(completedStatus);
-
-  // Edit dialog click event should open something that mirrors the project Dialog, but instead of creating a project it instead edits existing project
-  const editProject = document.createElement("button");
-  const editProjectSvg = document.createElement("img");
-  editProjectSvg.src = editSvg;
-  editProjectSvg.alt = "Edit project";
-  const editProjectText = document.createElement("div");
-  editProjectText.textContent = "Edit project";
-  editProject.appendChild(editProjectSvg);
-  editProject.appendChild(editProjectText);
-  editProjectClick(editProject, editProjectDial, database);
-  headerDivs.push(editProject);
 
   return headerDivs;
 }

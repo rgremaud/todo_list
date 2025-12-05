@@ -2,14 +2,10 @@ export {
   createProjectDialog,
   createTodoDialog,
   addTodoDialog,
-  editProjectDialog,
 };
 
-import { closeDialog } from "./button.js";
 import { submitTodoClickEvent } from "./button.js";
 import { createCancelButton } from "./button.js";
-import { submitProjectEdit } from "./button.js";
-
 
 function createProjectDialog(dialogId) {
   const projectDialog = createDialog(dialogId);
@@ -51,7 +47,7 @@ function createProjectFormLines(dialog) {
     priorityOptions,
   );
   formLines.push(lineThree);
-  const lineFour = createDateInput("Due date: ", "projectDueDate");
+  const lineFour = createDateInput("Due Date: ", "projectDueDate");
   formLines.push(lineFour);
   const lineFive = document.createElement("div");
   // refactor
@@ -108,76 +104,6 @@ function openTodo(project) {
   button.addEventListener("click", () => {
     todoDialog.showModal();
   });
-}
-
-function editProjectDialog(headerDiv, dialogId, project, database) {
-  const editProjectDialog = createDialog(dialogId);
-  editProjectDialog.className = "editDialog";
-
-  const projectForm = createForm();
-
-  const formLines = editProjectFormLine(editProjectDialog, project, database);
-
-  formLines.forEach((line) => {
-    projectForm.appendChild(line);
-    line.className = "formLine";
-  });
-
-  editProjectDialog.appendChild(projectForm);
-
-  headerDiv.appendChild(editProjectDialog);
-
-  return editProjectDialog;
-}
-
-function editProjectFormLine(dialog, project, database) {
-  const formLines = [];
-
-  const lineOne = createTextBoxInput(
-    "Project Title: ",
-    "projectTitle",
-    project.name,
-  );
-  formLines.push(lineOne);
-
-  const lineTwo = createTextBoxInput(
-    "Description: ",
-    "projectDescription",
-    project.description,
-  );
-  formLines.push(lineTwo);
-
-  const priorityOptions = [
-    { value: "high", text: "High" },
-    { value: "medium", text: "Medium" },
-    { value: "low", text: "Low" },
-  ];
-
-  const lineThree = createSelectInput(
-    "Priority: ",
-    "projectPriority",
-    priorityOptions,
-  );
-  formLines.push(lineThree);
-  const lineFour = createDateInput("Due date: ", "projectDueDate");
-  formLines.push(lineFour);
-  const lineFive = document.createElement("div");
-  // refactor
-  formLines.push(lineFive);
-  lineFive.classList = ("formLine", "buttonLine");
-  const editProjectButton = document.createElement("button");
-  editProjectButton.id = "editProjectButton";
-  editProjectButton.textContent = "Edit Project";
-  submitProjectEdit("editProjectButton", database, editProjectDialog, project);
-  lineFive.appendChild(editProjectButton);
-
-  const cancelButton = createCancelButton(dialog);
-
-  closeDialog(cancelButton, editProjectDialog, database);
-
-  lineOne.appendChild(cancelButton);
-
-  return formLines;
 }
 
 function createDialog(id = "") {
